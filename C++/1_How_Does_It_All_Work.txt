@@ -1,0 +1,31 @@
+Programming Language:
+.High level, known as source code. Intended for human readability
+
+C file extensions, accessed in an Editor:
+.cpp 
+.h
+
+Binary or Low-level Representation:
+.Low-level, object code for computers
+
+Compiler:
+.translates from high-level to low-level code.
+
+Linker:
+.links together our code with other libraries and creates an executable program
+
+Testing + Debugging: Finding and fixing errors.
+
+-------------------------------------------------------------------------------------
+Source Code |       Compiler      | Object Code |   Linker   |
+
+file1.cpp -------------------------> file1.obj \                / C++ Standard Library
+file2.cpp -------------------------> file2.obj ---- main.exe <--
+main.cpp -------------------------->  main.obj /                \ Other Libraries
+-------------------------------------------------------------------------------------
+
+Integrated Developer Environments (IDEs)
+.Editor, Compiler, Linker, Debugger, keeps everything in sync
+
+Examples: CodeLite, Code::Blocks, NetBeans, Eclipse, CLion, Dev-C++, KDevelop,
+Visual Studio Code, Xcode
