@@ -17,3 +17,7 @@ Output: Provides higher level summary of executions.
 .Using the Command-line
 .Using a Web-based compiler 
 
+http://cpp.sh/ - C++ shell available through Chrome
+webcompiler.cloudapp.net - Online Visual C++ compiler
+repl.it - Online C++ compiler
+
