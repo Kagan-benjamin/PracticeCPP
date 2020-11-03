@@ -1,0 +1,40 @@
+.Programming languages have specific rules to govern structure:
+
+--Syntax errors - something went wrong with the structure ----------
+    std::cout << "Errors << std::endl;   No closing string quotes
+
+    return 0                             No closing semicolon
+
+    return;                              Function is designated to expect integer
+
+--Semantic errors - something went wrong with the meaning of the code ---------
+    a + b;    -using addition operator when it doesn't make sense to add a and b
+
+    return "Joe";                        
+
+--Do NOT ignore compiler warnings! ------------------------------------------
+.The compiler has recognized an issue with your code that could lead to a potential
+problem.
+.It's only a warning because the compiler is still able to generate correct 
+machine code.
+
+int miles_driven;
+    std::cout << miles_driven;
+
+warning: 'miles_driven' is used uninitialized
+
+--Linker Errors: --------------------------------------------------------------
+"undefined reference to x", exit status returned as 1
+
+--Runtime Errors: -------------------------------------------------------------
+.Errors that occur when the program is executing
+.Some typical runtime errors include:
+  -Divide by 0
+  -File not found
+  -Out of memory
+.These errors can cause your program to 'crash'.
+.Exception Handling can help deal with runtime errors 
+
+--Logic Errors: ----------------------------------------------------------------
+.Errors or bugs in your code that cause your program to run incorrectly
+.Logic errors are mistakes made by the programmer

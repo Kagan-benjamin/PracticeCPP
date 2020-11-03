@@ -1,0 +1,13 @@
+--CodeLite IDE Tour--
+
+-Output Pane
+-Workspace Pane
+-Navigation Pane
+-Debugger Pane
+
+.Active projects are italicized on the left, they are currently designated to 
+build and run
+.Perspective settings can be saved as view templates
+
+
+--First C++ Program--
