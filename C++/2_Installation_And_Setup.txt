@@ -1,0 +1,19 @@
+.Microsoft Windows, Mac OSX, Ubuntu Linux 18.04
+  -C++ Compiler
+  -CodeLite Integrated Development Environment (IDE)
+  -Configure CodeLite
+  -Create a Default CodeLite Project Template
+
+CodeLite offers output below the text editing field -
+
+Build: Supplies information about compiler, compiling errors can be found here.
+.Provides syntax error identification
+
+Output: Provides higher level summary of executions.
+-Working directory context
+-Execution
+-Conclusion
+
+.Using the Command-line
+.Using a Web-based compiler 
+
