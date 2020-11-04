@@ -1,0 +1,146 @@
+-- Structure of a C++ Program --
+
+
+Basic Components:
+
+keywords - reserved words with specific uses in various languages
+# of reserved keywords: C++ - 90 | Java - 50 | C - 32 | Python - 33
+ -includes return | int 
+
+identifiers - something that the programmer names 
+
+operators - + | - | * | / | << | >> | :: | 
+                stream insertion/extraction operator
+
+punctuation: ; | () 
+
+Altogether, keywords, identifiers, operators and punctuation define the 'syntax'
+-------------------------------------------------------------------------------------
+Preprocessor Directives:
+
+.The C++ preprocessor is a program that processes your source code before the compiler
+interacts with it.
+.The C++ preprocessor first strips all comments from the source file and replaces each
+comment with a single space.
+.Then, it looks for preprocessor directives and executes them.
+.Preprocessor directives are found in the source code with a # symbol.
+
+Examples: #include <iostream> | #include "myfile.h" | #pragma
+#if | #elif | #else | #endif | #ifdef | #ifndef | #define | #undef | #line | #error 
+
+.The most commonly used preprocessor directive is #include. When the preprocessor
+encounters the #include line, it replaces the line with the file to which it is 
+referring. The preprocessor recursively processes this file as well. 
+.By the time the preprocessor is finished with the source code, all comments have been
+removed and all directives have been fully processed.
+.Preprocessor directives are commonly used to conditionally compile code.
+-------------------------------------------------------------------------------------
+Comments:
+
+.Comments are human-readable explanations/notes/annotations found in source
+code.
+
+Single-line comment: // this is a short comment
+Multi-line comment: /* this is a
+                              much longer comment */
+
+.Use comments to identify complicated code and use consistent style.
+.Don't use comments as a version control system; use github.
+.Make sure to keep comments and code in sync as you build out applications.
+-------------------------------------------------------------------------------------
+The main() function:
+
+.Every C++ program must have exactly 1 main() function 
+.A C++ program can have hundreds of files, but 1 must contain the main() function.
+.main() is the starting point of overall program execution.
+.The program executes until it hits a 'return' keyword. Return 0 indicates successful
+program execution.
+
+2 valid versions of main():
+
+1.                            2.
+int main()                    int main(int argc, char *argv[])
+{                             {
+    // code                        // code 
+    return 0;                      return 0;
+}                             }
+program.exe                   program.exe | argument1 | argument2
+
+.Version 1 of main() does not expect any information from the operating system in order
+to run. 
+.Version 2 expects the OS to pass in information:
+ -We tell the compiler that we need:
+argc 1. The number of pieces of information (arguments) that are expected to be passed
+argv 2. The actual arguments themselves
+
+.main() must always return an integer. 
+.our entire programs will be contained within the main() function.
+-------------------------------------------------------------------------------------
+Namespaces:
+
+.Namespaces are names given to parts of code to help reduce naming conflicts.
+.std is the name for the C++ 'standard' namespace.
+.3rd party frameworks will have their own namespaces.
+.Scope resolution operator ::  
+
+.at file top can use the 'using namespace' directive: using namespace std;   
+.can further specify: using std::cout; | using std::cin; | using std::endl;
+-------------------------------------------------------------------------------------
+Basic Input/Output (I/O):
+
+cout, cin, cerr, and clog are objects representing streams. They are defined in the 
+C++ standard (std), and in order to use them you must #include <iostream>
+
+cout:
+    -standard output stream
+    -console
+cin:
+    -standard input stream
+    -keyboard (by default)
+<<:
+    -insertion operator
+    -output streams
+>>: 
+    -extraction operator
+    -input streams
+
+.cout and <<:
+
+    .insert data into the cout stream:
+        cout << data;
+    .can be chained:
+        cout << "data 1 is " << data1;
+    .does NOT automatically add line break:
+        cout << "data 1 is " << data1 << endl;
+        cout << "data 1 is " << data1 << "\n";
+
+.cin and >>:
+
+    .extracts data from the cin stream based on data's type:
+        cin >> data;
+    .can be chained:
+        cin >> data1 >> data2;
+    .can fail if the entered data cannot be interpreted 
+
+******* When you are inputting a stream (using cin >>), all valid variables
+will attempt to assign. For example: *******
+
+    int num1;
+    int num2;
+    
+    cout << "Enter a 1st integer: ";
+    cin >> num1;
+    
+    cout << "Enter a 2nd integer: ";
+    cin >> num2;
+    
+    cout << "You entered: " << num1 << " and " << num2 << endl;
+    return 0;
+
+    If you input 100        200 at first cin, program will execute as follows:
+    
+    Enter a 1st integer: 100           200
+    Enter a 2nd integer: You entered: 100 and 200
+    please hit any key...
+
+The stream is not cleared after 100 is assigned to num1, num2 is still assigned to 200.
