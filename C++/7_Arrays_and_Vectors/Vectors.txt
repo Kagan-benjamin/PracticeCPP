@@ -1,0 +1,55 @@
+C++ Vectors
+---------------------------------------------------------------------------------------
+
+.C++ Vectors are a container in the C++ Standard Template Library
+.An array that can grow and shrink in size at execution time
+.Provides similar semantics and syntax as arrays
+.Very efficient
+.Can provide bounds checking
+.Can use lots of powerful functions like sort, reverse, find and more.
+
+
+Vector Declaration: 
+#include <vector>
+using namespace std;
+
+vector <char> vowels (5);      // initial values automatically set to 0
+vector <int> test_scores (10);
+
+vector <char> vowels {'a','e','i','o','u'};
+vector <int> test_scores {100, 98, 89, 85, 93};
+vector <double> hi_temperatures (365, 80.0)
+// set 365 elements, all initially set to 80.0
+--------------------------------------------------------------------------------------
+Vector Characteristics:
+.Dynamic Size
+.Elements are all of the same type
+.Stored contiguously in memory
+.Individual elements can be accessed by their position or index
+
+.First element at index 0
+.Last element at index size - 1
+
+.[] - no checking to see if you are out of bounds
+.Provides many useful functions that do bounds checking
+
+.Elements initialized automatically to 0
+.Very efficient and often used with looping (iteration)
+--------------------------------------------------------------------------------------
+Accessing Vector Elements:
+
+vector <int> test_scores {100, 98, 89, 85, 93};
+
+vector_name | [element_index]
+test_scores[1];                 // No boundary handling
+
+vector_name.at(element_index)
+test_scores.at(1);              // Includes boundary handling, will throw errors
+
+cin >> test_scores.at(0);       // keyboard assignment
+test_scores.at(0) = 90;         // reassignment
+
+vector_name.push_back(element)
+test_scores.push_back(80);      // adds elements to end of the vector
+test_scores.push_back(90);      // test_scores: {100, 98, 89, 85, 93, 80, 90}
+

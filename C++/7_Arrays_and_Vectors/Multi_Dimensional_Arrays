@@ -1,0 +1,25 @@
+Multi-dimensional Arrays in C++
+
+Element_Type array_name [dim1_size] [dim2_size];
+
+int movie_rating [3] [4]; // 3 reviewer elements, 4 movie elements 
+                  
+                movie (second index):
+                 0 | 1 | 2 | 3 |
+                ----------------
+               0|0 | 4 | 3 | 5 | 
+reviewer:      1|2 | 3 | 3 | 5 |
+(first index)  2|1 | 4 | 4 | 5 |
+
+const int rows {3};
+const int cols {4};
+
+int movie_rating [rows] [cols]
+{
+    {0, 4, 3, 5},
+    {2, 3, 3, 5},
+    {1, 4, 4, 5}
+};
+
+cin >> movie_rating [1] [2];
+cout << movie_rating [1] [2];
