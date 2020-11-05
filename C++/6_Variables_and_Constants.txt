@@ -167,7 +167,43 @@ unsigned long long int|   At least 64 bits
                  true or false (C++ keywords)
 --------------------------------------------------------------------------------------
 
+sizeof operator:
+    -determines the size in bytes of a type or variable
+example:
+    sizeof(int)
+    sizeof(double)
+    sizeof(some_variable)
+    sizeof some_variable
 
+.The sizeof operator receives information from two external files, 
+    <climits> and <cfloat>
+.The climits and cfloat include files contain size and precision information about 
+your implementation of C++
+.Provides pre-defined constants:
+    INT_MAX - maximum value we can store in an int on this machine
+    INT_MIN - minimum value we can store in an int on this machine
+    LONG_MIN - minimum value we can store in a long on this machine
+    LONG_MAX - maximum value we can store in a long on this machine
+    FLT_MIN - minimum value we can store in a float on this machine
+    FLT_MAX - maximum value we can store in a float on this machine 
 
+#include <climits>
+int main(){
+    cout << "char: " << CHAR_MIN << endl;
+    cout << "char: " << CHAR_MAX << endl;
+    cout << "int: " << INT_MIN << endl;
+    cout << "int: " << INT_MAX << endl;
+    cout << "short: " << SHRT_MIN << endl;
+    cout << "short: " << SHRT_MAX << endl;
+    cout << "long: " << LONG_MIN << endl;
+    cout << "long: " << LONG_MAX << endl;
+    cout << "long long: " << LLONG_MIN << endl;
+    cout << "long long: " << LLONG_MAX << endl;
 
-.sizeof operator 
+    int age {21};
+    cout << "age is " << sizeof(age) << " in size." << endl;
+
+    double wage {22.24};
+    cout << "wage is " << sizeof(wage) << " in size." << endl;
+    return 0;
+}
