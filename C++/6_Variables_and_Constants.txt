@@ -1,0 +1,91 @@
+---Variables and Constants---
+
+What is a variable?
+.example of memory in use:
+                                        Memory   ...
+                                       |      |  1000
+                .move 21 to            |      |  1001
+                location 1002          |  21  |  1002
+                                       |      |  1003
+                                       |      |  1004
+                                       |      |  1005
+                                       |      |  ...
+
+.most programming languages enable you to associate a name with a memory location.
+.example of variable in use:
+
+                                        Memory   ...
+                                       |      |  1000
+                .move 21 to age        |      |  1001
+                                    age|  21  |  1002   // In computing, this is 
+                                       |      |  1003   // called a BINDING
+                                       |      |  1004
+                                       |      |  1005
+                                       |      |  ...
+
+.once we have established a binding, we don't need to worry about keeping track of
+the specific memory location of individual items.                                
+
+.A variable is an abstraction for a memory location.
+.Variables allow programmers to use meaningful names and not memory addresses
+.Variables have:
+    -Type, their category (integer, float, string, Person, Account...)
+    -Value, the contents (10, 3.14, "Ben"...)
+.All variables MUST be declared before they are used.
+.The value of variables may change:
+
+int age;
+age = 21;
+--------------------------------------------------------------------------------------
+
+Declaring variables:
+
+.Variable declarations contain 2 components:
+    -VariableType
+    -VariableName
+.Examples:
+    int age;                type = integer      | name = age
+    double rate;            type = double       | name = rate
+    string name;            type = string       | name = name
+    Account bens_account;   type = custom class | name = bens_account
+    Person ben;             type = custom class | name = ben
+
+.Variable Naming Conventions in C++:
+    -Can contain letters, numbers and underscores
+    -The 1st char MUST be a letter or underscore
+    -Cannot used C++ reserved keywords
+    -Cannot redeclare a name in the same scope 
+    -C++ is case sensitive
+
+            Legal       |       Illegal
+    ---------------------------------------------------------------            
+    Age                 |    int - reserved keyword
+    age                 |    $age - illegal character
+    _age                |    2014_age - cannot start with number
+    My_age              |    My age - space not recognized
+    your_age_in_2014    |    Age+1 - illegal character
+    INT                 |    cout - reserved by standard library
+    Int                 |    return - reserved keyword
+
+.Best practices:
+    -Be consistent with your naming conventions 
+    -Camelcase vs underscores 
+    -Use meaningful names, not too long or too short
+    -Never use variables before initializing them
+    -Declare variables as close to when you use them as possible. In general, 
+     don't declare variables at the top of your files.
+
+.Initializing Variables:
+    int age; // declared but unassigned
+    int age = 21; // C-like initialization
+    int age (21); // Constructor initialization
+    int age {21}; // C++11 list initialization syntax 
+
+
+.C++ primitive types:
+    -integer
+    -floating point
+    -boolean
+    -character
+
+.sizeof operator 
