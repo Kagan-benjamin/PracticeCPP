@@ -61,4 +61,46 @@ Operator  |   Meaning
     <     | less than
     <=    | less than or equal to
     <=>   | three-way comparison (C++20)
+---------------------------------------------------------------------------------------
+Logical Operators: 
 
+Operator  |   Meaning 
+----------------------
+ not / !  |  negation
+ and / && |  logical AND
+ or / ||  |  logical OR
+
+NOT (!) - expression A  |  expression !A 
+-------------------------------------------
+                True    |      False
+                False   |      True
+
+AND (&&) - expression A  |  expression B   |  A && B  |  
+-------------------------------------------------------
+                True    |      True        |   True
+                True    |      False       |   False
+                False   |      True        |   False
+                False   |      False       |   False 
+
+OR (||) - expression A  |  expression B   |  A || B  |  
+-------------------------------------------------------
+                True    |      True        |   True
+                True    |      False       |   True
+                False   |      True        |   True
+                False   |      False       |   False 
+
+Precedence:
+    -NOT has the highest precedence, followed by AND, then OR 
+    -NOT is a unary operator
+    -AND and OR are binary operators
+
+Examples:
+    num1 >= 10 && num1 < 20                // True ONLY if num1 >= 10 AND num1 < 20
+    num1 <= 10 || num1 >= 20               // True if num1 <= 10 OR num1 >= 20 
+    !is_raining && temperature > 32.0
+    is_raining || is_snowing 
+    temperature > 100 && is_humid || is_raining 
+
+Short-Circuit Evaluation:
+    -When evaluating a logical expression, C++ stops as soon as the result is known
+Example: expr1 || expr2 || expr3 // if expr1 is True, expr2 and expr 3 are not evaluated
