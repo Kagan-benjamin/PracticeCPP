@@ -1,0 +1,37 @@
+Mixed Type Expressions
+
+.C++ operations occur on same type operands
+.If operands are of different types, C++ will convert one
+.C++ will attempt to automatically convert types (coercion). If it is unable,
+a compiler error will occur
+
+Conversions:
+    .Higher vs Lower types are based on the size of the values the type can hold
+        -long double > double > float > unsigned long > long > unsigned int > int 
+     !! -short and char types are always conveted to int !!
+
+    .Type Coercion: conversion of one operand to another data type
+
+    .Promotion: conversion to a higher type 
+        -used in mathematical expressions
+
+example: 2 * 5.2 | 2 is promoted to 2.0 | the lower (int) is promoted to a higher (float)
+
+    .Demotion: conversion to a lower type
+        -used with assignment to lower type
+
+example: lower = higher;
+    int num {0};         // the higher (float) is demoted to a lower (int)
+    num = 100.2;
+
+Explicit Type Casting - static_cast<type>
+
+int total_amount {100};
+int total_number {8};
+double average {0.0};
+
+average = total_amount / total_number;
+cout << average << endl;    // displays 12
+
+average = static_cast<double>(total_amount) / total_number;
+cout << average << endl; // displays 12.5
