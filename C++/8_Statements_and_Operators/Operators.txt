@@ -125,3 +125,32 @@ Examples:
     a /= 5;              // a = a / 5; 
     a *= b + c;          // a = a * (b+c);
     cost += items * tax; // cost = cost + (items * tax);
+---------------------------------------------------------------------------------------
+C++ Operator Precedence:
+
+               Operator               |      Associativity
+----------------------------------------------------------
+            [] -> . ()                |    left to right
+++ -- not -(unary) *(de-ref) & sizeof |    right to left
+            * / %                     |    left to right
+            + -                       |    left to right
+            << >>                     |    left to right
+           < <= > >=                  |    left to right
+            == !=                     |    left to right 
+             &                        |    left to right 
+             ^                        |    left to right 
+             |                        |    left to right 
+             &&                       |    left to right 
+             ||                       |    left to right 
+           = op= ?:                   |    right to left
+
+What is associativity? 
+    -use precedence rules when adjacent operators are different 
+    -use associativity rules when adjacent operators have the same precedence
+    -use parenthesis to absolutely remove any doubt, good w/ complex expressions
+
+Examples:
+    result = num1 + num2 * num3;
+    result = (num1 + (num2 * num3));
+    result1 = num1 + num2 - num3;
+    result1 = ((num1 + num2) - num3);
