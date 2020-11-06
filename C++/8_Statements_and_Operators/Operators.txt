@@ -104,3 +104,24 @@ Examples:
 Short-Circuit Evaluation:
     -When evaluating a logical expression, C++ stops as soon as the result is known
 Example: expr1 || expr2 || expr3 // if expr1 is True, expr2 and expr 3 are not evaluated
+---------------------------------------------------------------------------------------
+Compound Assignment Operators
+
+Operator  |         Example         |    Meaning  
+-------------------------------------------------
+  +=      |        lhs += rhs;      |  lhs = lhs + (rhs);
+  -=      |        lhs -= rhs;      |  lhs = lhs - (rhs);
+  *=      |        lhs *= rhs;      |  lhs = lhs * (rhs);
+  /=      |        lhs /= rhs;      |  lhs = lhs / (rhs);
+  %=      |        lhs %= rhs;      |  lhs = lhs % (rhs);
+  >>=     |        lhs >>= rhs;     |  lhs = lhs >> (rhs);
+  <<=     |        lhs <<= rhs;     |  lhs = lhs << (rhs);
+  &=      |        lhs &= rhs;      |  lhs = lhs & (rhs);
+  ^=      |        lhs ^= rhs;      |  lhs = lhs ^ (rhs);
+  |=      |        lhs |= rhs;      |  lhs = lhs | (rhs);
+
+Examples:
+    a += 1;              // a = a + 1;
+    a /= 5;              // a = a / 5; 
+    a *= b + c;          // a = a * (b+c);
+    cost += items * tax; // cost = cost + (items * tax);
