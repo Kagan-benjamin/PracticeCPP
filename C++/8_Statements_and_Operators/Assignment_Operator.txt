@@ -1,0 +1,17 @@
+--Assignment Operator--
+
+lhs = rhs
+
+.Right-hand side (rhs) is an expression that is evaluated to a value
+.The value of the rhs is stored to the lhs
+.The value of the rhs must be type compatible with the lhs
+.The lhs must be assignable
+.Assignment expression is evaluated to what was just assigned
+.More than one variable can be assigned in a single statement 
+--------------------------------------------------------------------------------------
+C++ Arithmetic Operators
+
++ addition | - subtraction | * multiplication | / division | % modulo 
+
+.modulo or remainder only works with integers
+.+,-,*,/ operators are overloaded to work with multiple types such as int, double, etc.
