@@ -51,6 +51,14 @@ cout << (num1 == num2) << endl; // 0 or 1
 cout << std::boolalpha;
 cout << (num1 == num2) << endl; // True or False
 cout << std::noboolalpha;
+---------------------------------------------------------------------------------------
+Relational Operators:
 
-
+Operator  |   Meaning
+----------------------
+    >     | greater than
+    >=    | greater than or equal to
+    <     | less than
+    <=    | less than or equal to
+    <=>   | three-way comparison (C++20)
 
