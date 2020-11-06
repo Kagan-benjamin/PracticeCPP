@@ -29,3 +29,28 @@ Postfix: num++
 
 .Don't overuse this operator and never use it twice for the same variable within
 the same statement.
+---------------------------------------------------------------------------------------
+Testing for Equality
+
+.The == and != operators:
+    .compares the values of 2 expressions 
+    .evaluates to a Boolean (1 or 0)
+    .commonly used in control flow statements 
+
+expr1 == expr2 // evaluates to True if expr1 value = expr2 value 
+expr1 != expr2 // evaluates to True if expr1 value != expr2 value
+100 == 200 // evaluates to False since 100 != 200
+num1 != num2 // evaluates to True if num1 value != num2 value
+
+example:
+bool result {false};
+result = (100 == 50+50);
+result = (num1 != num2);
+
+cout << (num1 == num2) << endl; // 0 or 1 
+cout << std::boolalpha;
+cout << (num1 == num2) << endl; // True or False
+cout << std::noboolalpha;
+
+
+
