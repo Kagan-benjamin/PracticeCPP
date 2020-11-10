@@ -54,19 +54,88 @@ switch (screen_color) {
     case blue: cout << "blue"; break;
     default: cout << "should never execute"; 
 }
+---------------------------------------------------------------------------------------
+Conditional operator ?: (Ternary Operator)
+
+(conditional_expr) ? expr1 : expr2
+
+.Conditional_expr evaluates to a boolean expression
+    -if conditional_expr is true, the value of expr1 is returned
+    -if conditional_expr is false, the value of expr2 is returned
+
+.Similar to if-else construct
+.This is a ternary operator
+.Very useful when used inline, but very easy to abuse.
+.Never nest conditional operators within each other.
+
+examples:
+int a {10}, b {20};
+int score {92};
+int result {};
+
+result = (a > b) ? a : b;
+result = (a < b) ? (b-a) : (a-b);
+result = (b != 0) ? (a/b) : 0;
+cout << ((score > 90)) ? "Excellent" : "Good");
+---------------------------------------------------------------------------------------
+Iteration:
+    .The 3rd basic building block of programming 
+        -sequence, selection, ITERATION
+    .Iteration or repetition 
+    .Allows the execution of a statement or block of statements REPEATEDLY
+    .Loops are made up of a loop condition and a loop body. The loop body contains 
+    the statements to repeat if the loop condition is met.
+
+Typical use cases:
+    .Execute a loop a specific number of times
+    .Execute for each element in a collection
+    .Execute while a specific condition remains true
+    .Execute until a specific conditions becomes false
+    .Execute until we reach the end of some input stream
+    .Execute forever (OS background processes)
+---------------------------------------------------------------------------------------
+FOR loop:
+    .Iterates a specific number of times
+
+for (initialization ; condition ; increment){
+    statement(s);
+}
+
+for (int i{1}; i <= 5; i++){
+    cout << i << endl;
+}
+
+int scores [] {100, 90, 87};
+for (int i {0}; i < 3; i++){
+    cout << scores[i] << endl;
+}
+
+Comma Operator:
+
+    for (int i {1}, j {5}; i <= 5; i++, j++){
+        cout << i << " * " << j << " : " << (i*j) << endl;
+    }
+.The basic FOR loop is very clear and concise.
+.Since the FOR loop's expressions are all optional, it is possible to have:
+    -no initialization
+    -no test
+    -no increment 
 
 
 
 
-conditional operator ?:
 
-.Iteration
-    -Looping or repeating 
+Range-based FOR loop:
+    .1 iteration for each element in a range or collection
+WHILE loop:
+    .Iterate while a condition remains true
+    .Iterate while a condition remains false
+    .Check the condition at the BEGINNING of every iteration 
+DO-WHILE loop:
+    .Iterate while a condition remains true
+    .Iterate while a condition remains false
+    .Check the condition at the END of every iteration.
 
-for loop
-range-based for loop
-while loop
-do-while loop
 continue and break
 infinite loops
 nested loops 
