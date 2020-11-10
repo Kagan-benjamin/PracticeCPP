@@ -6,7 +6,20 @@
 
 if statement
 if-else statement
-nested if statements
+-----------------------------------------------------------------------------------------
+Nested IF Statements:
+
+if (expr1)
+    if (expr2)
+        statement1;
+    else 
+        statement2;
+
+.In C++, the else statement belongs to the closest IF (same block scope)
+
+
+
+
 switch statement
 conditional operator ?:
 
