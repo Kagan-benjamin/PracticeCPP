@@ -16,11 +16,48 @@ if (expr1)
         statement2;
 
 .In C++, the else statement belongs to the closest IF (same block scope)
+----------------------------------------------------------------------------------------
+Switch Statement:
+
+.The control expression must evaluate to an integer type
+.The case expressions must be constant expressions that evaluate to integer
+or integers literals
+.Once a match occurs, all following case sections are executed UNTL a break statement
+is reached. At this point, the switch concludes.
+.Best practices: provide break statement for each case, default is optional but should
+be handled.
+
+
+switch (integer_control_expr) {
+    case expr1: state1; break;
+    case expr2: state2; break;
+    case expr3: state3: break;
+    default: state_default;
+}
+
+switch (selection) {
+    case '1': cout << "1 selected";
+              break;
+    case '2': cout << "2 selected";
+              break;
+    default:  cout << "1,2 NOT selected.";
+
+}
+
+enum Color {
+    red, green, blue
+};
+Color screen_color {green};
+switch (screen_color) {
+    case red: cout << "red"; break;
+    case green: cout << "green"; break;
+    case blue: cout << "blue"; break;
+    default: cout << "should never execute"; 
+}
 
 
 
 
-switch statement
 conditional operator ?:
 
 .Iteration
