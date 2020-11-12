@@ -271,8 +271,77 @@ for (auto val : values){
     }
 }
 ------------------------------------------------------------------------------------------
+Infinite / Endless Loops:
 
+.Loops whose condition expression always evaluates to true
+.Usually, this is unintended and a programmer error
+.Sometimes programmers use infinite loops and include break statements in 
+the body to control them
+.Sometimes infinite loops are exactl what we need:
+    -Event loop in an event-driven program
+    -Operating Systems
 
+examples:
 
-infinite loops
-nested loops 
+for (;;) cout << "This will print forever" << endl;
+---------------
+while (true) {
+    cout << "This will print forever" << endl;
+}
+---------------
+do {
+    cout << "This will print forever" << endl;
+} while true;
+---------------
+while (true) {
+    char again{};
+    cout << "Do you want to loop again? (Y/N): ";
+    cin >> again;
+
+    if (again == 'N' || again == 'n'){
+        break;
+    }
+}
+---------------------------------------------------------------------------------------
+Nested Loops:
+
+.Can be as many levels deep as the program needs 
+.Very useful with multi-dimensional data structures
+.Outer loop vs Inner loop
+
+examples:
+
+for (outer_val{1}; outer_val <= 2; outer_val++){
+    for (inner val{1}; inner_val <= 3; inner_val++){
+        cout << outer_val << " , " << inner_val << endl;
+    }
+}
+---------------
+for (int num1 {1}; num1 <= 10; num1++){
+    for (int num2 {1}; num2 <= 10; num2++){
+        cout << num1 << " * " << num2 << " = " << num1*num2 << endl;
+    }
+    cout << "----------------------------------------------" << endl;
+}
+---------------
+int grid[5][3] {};
+for (int row{0}; row < 5; row++){
+    for (int col{0}; col < 3; col++){
+        cout << grid[row][col] << " ";
+    }
+    cout endl;
+}
+---------------
+vector<vector<int>> vector_2d
+{
+    {1, 2, 3},
+    {10, 20, 30, 40},
+    {100, 200, 300, 400, 500}
+};
+for (auto vec : vector_2d){
+    for (auto val : vec){
+        cout << val << " ";
+    }
+    cout << endl;
+}
+
