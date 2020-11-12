@@ -120,17 +120,52 @@ Comma Operator:
     -no initialization
     -no test
     -no increment 
-
-
-
-
-
+---------------------------------------------------------------------------------------
 Range-based FOR loop:
-    .1 iteration for each element in a range or collection
+
+.1 iteration for each element in a range or collection
+.Introduced in C++11
+
+for (var_type var_name: sequence){
+    statement(s); // can use var_name
+}
+
+example:
+----------
+int scores [] {100, 90, 97};
+for (int score : scores){
+    cout << score << endl;
+}
+----------
+for (auto score : scores){    // automatically assess data type for score 
+    cout << score << endl;
+}
+----------
+vector<double> temps {87.2, 77.1, 80.0, 72.5};
+
+double average_temp {};
+double running_sum {};
+
+for (auto temp : temps){
+    running_sum += temp;
+}
+average_temp = running_sum / temps.size();
+-----------
+for (auto c : "Frank"){
+    cout << c << endl;
+}
+---------------------------------------------------------------------------------------
 WHILE loop:
     .Iterate while a condition remains true
     .Iterate while a condition remains false
     .Check the condition at the BEGINNING of every iteration 
+
+
+
+
+
+
+    
 DO-WHILE loop:
     .Iterate while a condition remains true
     .Iterate while a condition remains false
