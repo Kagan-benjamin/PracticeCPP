@@ -158,14 +158,68 @@ for (auto c : "Frank"){
 WHILE loop:
     .Iterate while a condition remains true
     .Iterate while a condition remains false
-    .Check the condition at the BEGINNING of every iteration 
+    .Check the condition at the BEGINNING of every iteration
+
+while (expr){
+    statement(s);
+} 
+
+examples:
+
+int i{1};
+while (i <= 5){
+    cout << i << endl;
+    i++;               // without a termination condition, while loops can cause
+}                      // infinite looping
+--------------
+int i{1};
+while (i <= 10){
+    if (i % 2 == 0){
+        cout << i << endl;
+    }
+    i++;
+}
+--------------
+int scores[] {100,90,87};
+int i{};
+while (i < 3){
+    cout << scores[i];
+    i++;
+}
+--------------
+USE CASE EXAMPLE:
+
+int num{};
+cout << "Enter an integer less than 100: ";
+cin >> num;
+
+while (num >= 100){
+    cout << "Enter an integer less than 100: ";
+    cin << num;
+}
+cout << "Thanks" << endl;
+--------------
+bool done{false};                  
+int num{};                      // This example uses a boolean toggle
+
+while (!done){
+    cout << "Enter an integer between 1 and 5: ";
+    cin >> num;
+    if (num <= 1 || >= 5){
+        cout << "Out of range, try again: " << endl;
+    }
+    else {
+        cout << "Thanks" << endl;
+        done = true;
+    }
+}
 
 
 
 
 
 
-    
+
 DO-WHILE loop:
     .Iterate while a condition remains true
     .Iterate while a condition remains false
