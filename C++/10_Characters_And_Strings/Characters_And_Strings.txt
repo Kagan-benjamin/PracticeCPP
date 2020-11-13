@@ -1,0 +1,80 @@
+-----Characters and Strings------
+
+.Character functions:
+
+#include <cctype>
+function_name(char)
+
+.Functions for testing characters
+.Functions for converting character case
+
+Testing Functions:
+--------------------------------------------------
+isalpha(c) - True if c is a letter
+isalnum(c) - True if c is a letter or digit
+isdigit(c) - True if c is a digit
+islower(c) - True if c is a lowercase letter
+isprint(c) - True if c is a printable character
+ispunct(c) - True if c is a punctuation character
+isupper(c) - True if c is an uppercase letter
+isspace(c) - True if c is whitespace
+---------------------------------------------------
+
+Conversion Functions:
+---------------------------------------------------
+tolower(c) - returns lowercase of c
+toupper(c) - returns uppercase of c 
+---------------------------------------------------
+
+.C-style Strings:
+.Sequence of characters
+    -stored contiguously in memory
+    -implemented as an array of characters
+    -terminated by a null character (null)
+    -referred to as zero or null-terminated strings
+
+.String literal
+    -sequence of characters in double quotes, eg. "Ben"
+    -constant
+    -terminated with null character
+
+examples:  "C++ is fun"
+    C | + | + |  | i | s |  | f | u | n | \0 |
+
+char my_name[] {"Frank"};
+
+    F | r | a | n | k | \0 |
+my_name[5] = 'y'; // Problem, not enough memory blocks allocated 
+ 
+char my_name[8];
+   ? | ? | ? | ? | ? | ? | ? | ?
+my_name = "Frank"; // error, cannot use assignment like this w/ strings since 
+                      // the variable points to a location in memory
+strcpy(my_name, "Frank"); // This Works
+
+C-Style String Examples:
+
+char str[80];
+strcpy(str, "Hello ");  // copy to string
+strcat(str, "there");   // concatenate
+cout << strlen(str);    // 10
+strcmp(str, "Another"); // -1
+---------------------------------------------------------------------------------------
+
+Working with C-style Strings:
+
+.Copying
+.Concatenation
+.Comparison
+.Searching
+.Others 
+
+.Includes functions to convert C-style Strings to:
+    -integer, float, long, etc.
+
+
+
+    
+
+.C++ Strings
+.Working with C++ Strings
