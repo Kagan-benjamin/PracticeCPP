@@ -71,10 +71,143 @@ Working with C-style Strings:
 
 .Includes functions to convert C-style Strings to:
     -integer, float, long, etc.
+---------------------------------------------------------------------------------------
 
+C++ Strings:
 
+.std::string is a Class in the Standard Template Library
+.#include <string>
+.std namespace
+.contiguous in memory
+.dynamic size
+.work with input and output streams
+.lots of useful member functions
+.our familiar operators can be used
+.can be easily converted to C-style strings if necessary
+.safer than C-style strings, include bounds checking in methods 
 
+Declaring and initializing:
+
+#include <string>
+using namespace std;
+
+string s1;
+string s2 {"Frank"};
+string s3 {s2};
+string s4 {"Frank", 3}; // only use first 3 characters
+string s5 {s3, 0, 2};   // start at index 0, use 2 chars. "Fr"
+string s6 (3, 'X');     // initialize w/ 3 Xs
+
+string s1;
+s1 = "C++ Rocks!";
+
+string s2 {"Hello"};
+s2 = s1;
+---------------------------------------------------------------------------------------
+Concatenation of Strings:
+
+string part1 {"C++"};
+string part2 {"is a powerful"};
+
+string sentence;
+sentence = part1 + " " + part2 + " language."; // "C++ is a powerful language."
+sentence = "C++" + " is powerful."; // THIS DOES NOT WORK, uses C-style literals
+---------------------------------------------------------------------------------------
+Accessing Characters [] and at() method:
+
+string s1;
+string s2 {"Frank"};
+cout << s2[0] << endl;    // F
+cout << s2.at(0) << endl; // F
+
+s2[0] = 'f';             // frank
+s2.at(0) = 'p';          // prank
+
+string s1 {"Frank"};
+for (char c : s1){
+    cout << c << endl;   // F r a n k
+}
+
+string s1 {"Frank"};
+for (int c : s1){
+    cout << c << endl;   // 70 114 97 110 107 0  (ASCII codes for each character)
+}
+---------------------------------------------------------------------------------------
+Comparison: == | != | > | >= | < | <=
+.The objects are compared character by character lexically.
+.Can compare:
+    -2 std::string objects
+    -std::string object and C-style string literal
+    -std::string object and C-style string variable 
+
+string s1{"Apple"};
+string s2{"Banana"};
+string s3{"Kiwi"};
+string s4{"apple"};
+string s5{s1};      // Apple
+
+s1 == s5       // True
+s1 == s2       // False
+s1 != s2       // True
+s1 < s2        // True - Apple < Banana according to ASCII 
+s2 > s1        // True
+s4 < s5        // False lowercase comes after
+s1 == "Apple"; // True
+
+Substrings - substr():
+.Extracts a substring from a std::string
     
+object.substr(start_index, length)
 
-.C++ Strings
+string s1 {"This is a test"};
+cout << s1.substr(0, 4); // This
+cout << s1.substr(5, 2); // is
+cout << s1.substr(10, 4); // test
+
+object.find(search_string)
+
+string s1 {"This is a test"};
+cout << s1.find("This");   // 0
+cout << s1.find("is");     // 2
+cout << s1.find("test");   // 10
+cout << s1.find('e');      // 11
+cout << s1.find("is", 4);  // 5
+cout << s1.find("XX");     // string::npos
+---------------------------------------------------------------------------------------
+Removing Characters - erase() and clear()
+    -Removes a substring of characters from a std::string
+
+string s1 {"This is a test"};
+cout << s1.erase(0,5); // "is a test"
+cout << s1.erase(5,4); // "is a" 
+cout << s1.clear();    // empty string " "
+
+---------------------------------------------------------------------------------------
+Other useful methods:
+
+string s1 {"Frank"};
+cout << s1.length() << endl; // 5
+
+s1 += " James";                     // concatenation operator
+cout << s1 << end;                  // Frank James
+
+
+Input >> and getline()
+
+Reading std::string from cin:
+
+string s1;
+cin >> s1; // "Hello there" only accepts "Hello"
+cout << s1 << endl; // "Hello"
+
+getline(cin, s1); // Read entire line until \n
+cout << s1 << end;   // "Hello there"
+
+getline(cin, s1, 'x'); // "this isx" => "this is"  x is delimiter and is discarded
+
+
+
+
+
+
 .Working with C++ Strings
