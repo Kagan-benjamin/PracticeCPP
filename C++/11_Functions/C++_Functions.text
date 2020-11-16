@@ -120,14 +120,58 @@ int main(){
 void say_hello(){
     cout << "Hello" << endl;
 }
----------------------
+----------------------------------------------------------------------------------------
+C++ Function Prototypes:
+
+.The compiler must know about a function before it is used
+.Define functions before calling them:
+    -OK for small programs
+    -Not a practical solution for larger programs
+.Use function prototypes:
+    -Tells the compiler what it needs to know without a full function definition 
+    -Also called forward declarations
+    -Placed at the beginning of the program
+    -Also used in our own header files (.h)
+----------------------------------
+int function_name(); // prototype
+int function_name(){
+    statement(s);
+    return 0;
+}
+
+int function_name(int);
+int function_name(int a);
+
+void function_name();
+
+void function_name(int a, std::string b);
+void function_name(int, std::string);
+----------------------------------
+EXAMPLE:
+
+void say_hello();
+void say_world();
+
+int main(){
+    say_hello();
+    cout << " Bye from main" << endl;
+    return 0;
+}
+
+void say_world(){
+    cout << " World" << endl;
+    cout << " Bye from say_world" << endl;
+}
+
+void say_hello(){
+    cout << "Hello" << endl;
+    say_world();
+    cout << " Bye from say_hello" << endl; 
+}
+----------------------------------
 
 
 
-
-
-
-.Prototype
 .Parameters and pass-by-value
 .return statement
 .default parameter values
