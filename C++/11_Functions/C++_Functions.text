@@ -214,7 +214,7 @@ int main(){
     return 0;
 }
 ---------------------------------------------------------------------------------------
-Return Statement
+Return Statement:
 
 .If a function returns a value then it must use a return statement that returns the val
 .If a function does not return a value (void), the return statement is optional
@@ -222,11 +222,22 @@ Return Statement
 .RETURN statement immediately exits the function
 .We can have multiple return statements in function, but this is good to avoid.
 .The return value is the result of the function call 
+---------------------------------------------------------------------------------------
+Default Parameter Values:
+
+.When a function is called, all arguments must be supplied
+.Sometimes, some of the arguments have the same values much of the time
+.We can tell the compiler to use default values if the arguments are not supplied
+*** .Default values can be in the prototype or definition, not both ***
+    -Best practice is to set the default values within the prototype
+    -Must appear at the tail end of the parameter list
+.Can have multiple default values
+    -Must appear consecutively at the tail end of the parameter list
 
 
 
 
-.default parameter values
+
 .overloading
 .passing arrays to functions
 .pass-by-reference
