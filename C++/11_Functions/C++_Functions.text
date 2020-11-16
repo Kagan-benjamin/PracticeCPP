@@ -168,12 +168,64 @@ void say_hello(){
     say_world();
     cout << " Bye from say_hello" << endl; 
 }
-----------------------------------
+---------------------------------------------------------------------------------------
+Function Parameters and pass-by-value:
+.when we call a function we can pass in data to that function
+.in the function call they are known as arguments
+.in the function definition they are known as parameters
+.they must match in number, order and in type
+
+int add_numbers(int, int); // prototype
+
+int main(){
+    int result{0};
+    result = add_numbers(100, 200); // function call
+    return 0;
+}
+
+int add_numbers(int a, int b){      // function definition
+    return a + b;
+}
+
+
+Pass-by-value:
+.when you pass data into a function it is passed-by-value
+.a copy of the data is passed to the function
+.whatever changes you make to the parameter in the function does NOT
+affect the argument that was passed in. 
+
+.Formal vs Actual parameters:
+    -Formal parameters: the parameters defined in the function header
+    -Actual parameters: the arguments used within the function call 
+
+examples:
+
+void param_test(int formal){
+    cout << formal << endl;
+    formal = 100;
+    cout << formal << endl;
+}
+
+int main(){
+    int actual{50};
+    cout << actual << endl;
+    param_test(actual);
+    cout << actual << endl;
+    return 0;
+}
+---------------------------------------------------------------------------------------
+Return Statement
+
+.If a function returns a value then it must use a return statement that returns the val
+.If a function does not return a value (void), the return statement is optional
+.RETURN statement can occur anywhere in the body of the function
+.RETURN statement immediately exits the function
+.We can have multiple return statements in function, but this is good to avoid.
+.The return value is the result of the function call 
 
 
 
-.Parameters and pass-by-value
-.return statement
+
 .default parameter values
 .overloading
 .passing arrays to functions
