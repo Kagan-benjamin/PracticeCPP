@@ -57,6 +57,73 @@ int add_numbers(int a, int b){
 }
 cout << add_numbers(20, 40);
 
+.Function Name:
+    -the name of the function
+    -same rules as for variables
+    -should be meaningful!
+    -usually a verb or verb phrase 
+
+.Parameter List:
+    -the variables that are expected to be passed into the function
+    -their types must be specified
+
+.Return Type:
+    -the type of the data that is returned from the function
+    -can return nothing, indicated with keyword 'VOID'
+
+.Body:
+    -the statements that are executed when the function is called 
+    -enclosed in {} curly braces
+---------------------
+Examples:
+
+int function_name(){
+    statements(s);
+    return 0;
+}
+---------------------
+int function_name(int a){     // [return type] [function name] (parameters) 
+    statement(s);             // [function body]
+    return 0;
+}
+---------------------
+No return type:
+
+void function_name(){
+    statement(s);
+    return;                   // return statement is optional here
+}
+---------------------
+void function_name(int a, std::string b){
+    statement(s);             // arguments must be supplied in the order listed
+    return; 
+}
+---------------------
+void say_hello(){
+    cout << "Hello" << endl;
+}
+
+int main(){
+    for (size_t i{0}; i < 10; i++){
+        say_hello();
+    }
+    return 0;
+}
+---------------------
+.Functions can call other functions, however, the compiler
+must know the function details BEFORE it is called!
+
+int main(){
+    say_hello(); // called BEFORE it is defined - ERROR
+    return 0;
+}
+void say_hello(){
+    cout << "Hello" << endl;
+}
+---------------------
+
+
+
 
 
 
