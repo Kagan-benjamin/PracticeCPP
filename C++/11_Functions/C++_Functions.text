@@ -295,6 +295,58 @@ double get_value();           // This will produce an error since the compiler c
 cout << get_value() << endl; 
 ---------------------------------------------------------------------------------------
 Passing Arrays to Functions
+
+.We can pass an array to a function by providing square brackets in the formal
+parameter description
+    void print_array(int numbers []);
+.The array element are NOT copied
+.Since the array name evaluates to the location of the array in memory, this address
+is the piece of data that is copied
+.The function has no idea how many elements are in the array since all it knows is 
+the location of the first element in the array (array name)
+------------------------------------
+void print_array(int numbers[]);
+
+int main(){
+    int my_numbers[] {1,2,3,4,5};               // This version does not work!
+    print_array(my_numbers);
+    return 0;
+}
+
+void print_array(int numbers[]){
+    // The function has no way of knowing how many elements to iterate over!
+    // We need to pass in the size of the array in addition to the name
+}
+------------------------------------- ***************
+void print_array(int numbers[], size_t size);
+
+int main(){
+    int my_numbers[] {1,2,3,4,5};               
+    print_array(my_numbers, 5);            // NOTE: You CAN mutate original array
+    return 0;
+}
+
+void print_array(int numbers[], size_t size){
+    for (size_t i{0}; i < size; i++){
+        cout << numbers[i] << endl;
+    }
+}
+---------------------------------------
+.We can tell the compiler that function parameters are const (read-only)
+.This can be useful in the print_array function since it should NOT modify the array
+
+void print_array(const int numbers[], size_t size){
+    for (size_t i{0}; i < size; i++){
+        cout << numbers[i] << endl;
+    }
+    numbers[i] = 0;       // This will result in a compiler error sinze numbers  
+}                         // has been designated as a constant
+
+
+
+
+
+
 .pass-by-reference
 .inline functions
 .auto return type
