@@ -234,12 +234,67 @@ Default Parameter Values:
 .Can have multiple default values
     -Must appear consecutively at the tail end of the parameter list
 
+examples:
 
+double calc_cost(double base_cost, double tax_rate);
 
+double calc_cost(double base_cost, double tax_rate){
+    return base_cost += (base_cost * tax_rate);
+}
+                                      // No default arguments
+int main(){
+    double cost{0};
+    cost = calc_cost(100.0, 0.06);
+    return 0;
+}
+---------------------------------------------------------
+double calc_cost(double base_cost, double tax_rate = 0.06);
 
+double calc_cost(double base_cost, double tax_rate){
+    return base_cost += (base_cost * tax_rate);
+}
+                                      // No default arguments
+int main(){
+    double cost{0};
+    cost = calc_cost(200.0);          // Utilizes default tax_rate value
+    cost = calc_cost(100.0, 0.08);    // Accepts custom tax_rate value
+    return 0;
+}
+---------------------------------------------------------------------------------------
+Function Overloading:
 
-.overloading
-.passing arrays to functions
+.We can have functions with different parameter lists that have the same name
+.This is an abstraction mechanism since we can just think 'print', for example
+.This is a type of polymorphism
+    -We can have the same name work with different data types to execute similar 
+    behavior
+.The compiler must be able to tell the functions apart based on the parameter 
+lists and arguments supplied
+
+.Be careful not to use conflicting default parameters, will cause errors w/ overloading
+------------------------------------------
+int add_numbers(int, int);
+double add_numbers(double, double);
+
+int main(){
+    cout << add_numbers(10,20) << endl;
+    cout << add_numbers(10.0,20.0) << endl;
+  return 0;
+}
+
+int add_numbers(int a, int b){
+    return a + b;
+}
+int add_numbers(double a, double b){
+    return a + b;
+}
+------------------------------------------
+int get_value();
+double get_value();           // This will produce an error since the compiler cannot
+                              // distinguish between the 2 versions of get_value 
+cout << get_value() << endl; 
+---------------------------------------------------------------------------------------
+Passing Arrays to Functions
 .pass-by-reference
 .inline functions
 .auto return type
