@@ -438,9 +438,92 @@ How do Function Calls Work?
 ---------------------------------------------------------------------------------------
 Inline Functions:
 
+.Function calls have a certain amount of overhead (associated with setup and 
+execution of the call stack)
+.Sometimes, we have simple functions where it would make sense to avoid this
+unnecessary use of resources
+.We can suggest to the compiler to compile them 'inline':
+    -avoid function call overhead
+    -generate inline assembly code
+    -faster
+    -could cause code bloat
+.Compiler optimizations are very sophisticated and will likely inline appropriate
+functions even without our suggestion
+
+example:
+
+inline int add_numbers(int a, int b){      // definition
+    return a + b;
+}
+
+int main(){
+    int result {0};
+    result = add_numbers(100, 200);        // call
+    return 0;
+}
+---------------------------------------------------------------------------------------
+Recursive Functions:
+
+.A recursive function is a function that calls itself
+    -Either directly or indirectly through another function
+.Recursive problem solving:
+    -Base case
+    -Divide the rest of problem into subproblem and perform recursive call
+.There are many problems that lend themselves to recursive solutions:
+    -Mathematical, like factorial, Fibonacci, fractals, etc...
+    -Search and sorting, binary search, search trees, etc...
+
+Examples:
+
+0! = 1               |  Base Case:      factorial(0) = 1
+n! = n * (n-1)!      |  Recursive Case: factorial(n) = n * factorial(n-1)
+
+unsigned long long factorial(unsigned long long n){
+    if (n == 0){
+        return 1;
+    }
+    return n * factorial(n-1);
+}
+
+int main(){
+    cout << factorial(8) << endl;
+    return 0;
+}
+---------------------------------------------
+
+Fib(0) = 0                    | Base Case:      Fib(0) = 0
+Fib(1) = 1                    | Base Case:      Fib(1) = 1
+Fib(n) = Fib(n-1) + Fib(n-2)  | Recursive Case: Fib(n) = Fib(n-1) + Fib(n-2)
+
+int fib(int n){
+    if (n == 0){
+        return 0;
+    }
+    else if (n == 1){
+        return 1;
+    }
+    else {
+        return (fib(n-1) + fib(n-2));
+    }
+}
+
+int main(){
+    cout << "Fib(0): " << fib(0) << endl;
+    cout << "Fib(1): " << fib(1) << endl;
+    cout << "Fib(2): " << fib(2) << endl;
+    cout << "Fib(3): " << fib(3) << endl;
+    cout << "Fib(10): " << fib(10) << endl;
+
+    cout << endl;
+    return 0;
+}
+
+.Anything that can be iterated through can be achieved through recursion
+.If recursion doesn't eventually stop, you will have infinite recursion
+.Recursion can be resource intensive 
+.Remember the bases case(s), it/they terminate the recursion
+.Only use recursive solutions when it makes sense
+.Anything that can be done recursively can be done iteratively
 
 
 
-
-.auto return type
-.recursive functions
