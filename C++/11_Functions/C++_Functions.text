@@ -382,6 +382,60 @@ void print(const vector<int> &v){
     }
 }
 ------------------------------------------------------------------------------------
+Scope Rules:
+
+.C++ uses scope rules to determine where an identifier can be used
+.C++ uses static or lexical scoping
+.There are 2 types of scope:
+    -Local/Block scope
+    -Global scope 
+
+Local Scope -
+    .Identifiers declared in a block {}
+    .Function parameters have block scope
+    .Only visible within the block {} where declared
+    .Function local variables are only active while the function is executing
+    .Local variables are NOT preserved between function calls
+    .With nested blocks, inner blocks can 'see' out but outer blocks cannot 'see' in
+
+Static Local Variable -
+    .Declared with static qualifier: static int value {10};
+    .Value IS preserved between function calls
+    .Only initialized the first time the function is called 
+
+Global Scope -
+    .Identifier declared outside any function or class
+    .Visible to all parts of the program after the global variable is declared
+    .Global constants are OK, but best practice is to avoid global variables 
+---------------------------------------------------------------------------------------
+How do Function Calls Work?
+
+.Functions use the 'function call stack'
+    -Analagous to a stack of books
+    -LIFO, Last in First out
+    -push and pop
+
+.Stack Frame or Activation Record
+    -Functions must return control to the function that called it
+    -Each time a function is called we create a new activation record and 
+    push it onto the top of the stack
+    -When a function terminates, we pop the activation record and return
+    -Local variables and function parameters are allocated on the stack
+
+.Stack size is finite - Stack Overflow 
+    -----------------------
+    |        MEMORY       |
+    -----------------------
+    |        Heap         |
+    |        Free Store   |
+    -----------------------
+    |        Stack        |  <-----------    
+    -----------------------
+    |    Static Variables |
+    -----------------------
+    |      Code Area      |
+    -----------------------
+---------------------------------------------------------------------------------------
 Inline Functions:
 
 
