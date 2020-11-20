@@ -1,14 +1,90 @@
 ---------- Pointers ------------
-
 What is a pointer?
 
+.A variable
+    -whose value is an address. also possess a type and a value
+.What can be at that address?
+    -another variable
+    -a function
+.Pointers point to variables or functions
+.If x is an integer variable and its value is 10, then I can declare a pointer 
+that points to it
+.In order to use the data that the pointer is pointing to, you must know its type
+
+Why use pointers?
+
+.Inside functions, pointers can be used to access data that is defined outside 
+the function. Those variables may not be in scope, so you cannot access them
+by their name
+.Pointers can be used to operate on arrays very efficiently
+.We can allocate memory dynamically on the heap or free store
+    -This memory doesn't even have a variable name
+    -The only way to get to it is via a pointer
+.Useful with Object Oriented paradigm; pointers are how polymorphism works
+.Can access specific addresses in memory 
+    -Useful in embedded and systems applications
+---------------------------------------------------------------------------------------
+Declaring Pointers:
+
+variable_type *pointer_name {null_ptr};  
+                       // uninitialized pointers will contain garbage data
+int *int_ptr {};
+double* double_ptr {nullptr};
+char *char_ptr {nullptr};
+string *string_ptr {nullptr};
+
+.Always initialize pointers
+.Uninitialized pointers contain garbage data and can 'point anywhere'
+.Initializing to zero or nullptr(C++ 11) represents address 0
+.If you don't initialize a pointer to point to a variable or function, then you
+should initialize it to 'nullptr' to make it null. 
+---------------------------------------------------------------------------------------
+Accessing the Pointer Address and Storing Addresses in Pointers
+
+the ADDRESS operator (&num)
+    .Variables are stored in unique addresses
+    .Unary operator
+    .Evaluates to the address of its operand, which cannot be a const or expression
+    that evaluates to temp values
+
+int num{10};
+cout << "Value of num is: " << num << endl;         // 10
+cout << "sizeof of num is: " << sizeof num << endl; // 4 (bytes)
+cout << "Address of num is: " << &num << endl;      // 0x61ff1c
+
+int *p;
+cout << "Value of p is: " << p << endl;             // 0x61ff60 - garbage
+cout << "Address of p is: " << &p << endl;          // 0x61ff18
+cout << "sizeof of p is: " << sizeof p << endl;     // 4
+p = nullptr;                                        // set p to point nowhere             
+cout << "Value of p is: " << p << endl;             // 0
+---------------------------------
+
+.Don't confuse the size of a pointer and the size of what it points to
+.All pointers in a program have the same size 
+.They may be pointing to very large or very small types !Be Aware!
+
+int *p1 {nullptr};
+double *p2 {nullptr};
+unsigned long long *p3 {nullptr};      // all pointers have size 8 bytes
+vector<string> *p4 {nullptr};
+string *p5 {nullptr};
+---------------------------------
+Typed Pointers:
+
+.The compiler will make sure that the address stored in a pointer variable is of
+the correct type
+
+int score{10};
+double temp{100.7};
+
+int *score_ptr {nullptr};
+score_ptr = &score;      // OK
+score_ptr = &temp;      // Compiler error, wrong type 
+---------------------------------------------------------------------------------------
 
 
 
-
-
-.Declaring pointers
-.Storing addresses in pointers
 .Dereferencing pointers
 .Dynamic memory allocation
 .Pointer arithmetic
