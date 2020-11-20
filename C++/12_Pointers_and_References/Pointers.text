@@ -140,16 +140,52 @@ cin >> size;
 array_ptr = new int[size];
 .......
 delete [] array_ptr;
+---------------------------------------------------------------------------------------
+Pointers and Arrays:
+
+.The value of an array name is the address of the first element in the array
+.The value of a pointer variable is an address
+.If the pointer points to the same data type as the array element, then the pointer
+and array name can be used (almost) interchangeably to interact with the array
+
+int scores[] {100,95,89};
+
+cout << scores << endl;  // 0x61fec8
+cout << *scores << endl; // 100
+
+int *score_ptr{scores};
+cout << score_ptr << endl;  // 0x61fec8
+cout << *score_ptr << endl; // 100
+--------------------------------------
+int scores[] {100,95,89};
+int *score_ptr{scores};
+
+cout << score_ptr[0] << endl; // 100
+cout << score_ptr[1] << endl; // 95
+cout << score_ptr[2] << endl; // 89
+
+cout << score_ptr << endl;       // 0x61ff10
+cout << (score_ptr + 1) << endl; // 0x61ff14   // moves over 4 bytes in memory
+cout << (score_ptr + 2) << endl; // 0x61ff18   // to next element location
+
+cout << *score_ptr << endl;        // 100
+cout << *(score_ptr + 1) << endl;  // 95
+cout << *(score_ptr + 2) << endl;  // 89
+--------------------------------------
+int array_name[] {1,2,3,4,5};
+int *pointer_name {array_name};
+
+Subscript Notation: array_name[index], pointer_name[index]
+Offset Notation: *(array_name + index), *(pointer_name + index)
 
 
 
 
 
 
+.Pass-by-reference with pointers
 
 .Pointer arithmetic
-.Pointers and arrays
-.Pass-by-reference with pointers
 .const and pointers
 .Using pointers to functions
 .Potential pointer pitfalls 
