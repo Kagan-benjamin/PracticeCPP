@@ -82,10 +82,35 @@ int *score_ptr {nullptr};
 score_ptr = &score;      // OK
 score_ptr = &temp;      // Compiler error, wrong type 
 ---------------------------------------------------------------------------------------
+Dereferencing Pointers:
+
+.If score_ptr is a pointer and has a valid address, then we can access the data
+at the address contained in score_ptr by using the dereferencing operator (*)
+
+int score{100};
+int *score_ptr{&score};
+
+cout << *score_ptr << endl;   // 100
+*score_ptr = 200;
+cout << *score_ptr << endl;   // 200
+cout << score << endl;        // 200
+----------------------------------
+double high_temp{100.7};
+double low_temp{37.4};
+double *temp_ptr{&high_temp};
+cout << *temp_ptr << endl;    // 100.7
+temp_ptr = &low_temp;         // pointer is set to new address
+cout << *temp_ptr << endl;    // 37.4
+----------------------------------
+string name{"Frank"};
+string *name_ptr{&name};
+cout << *name_ptr << endl;    // Frank
+name = "James";               // underling variable is set to new value
+cout << *name_ptr << endl;    // James
 
 
 
-.Dereferencing pointers
+
 .Dynamic memory allocation
 .Pointer arithmetic
 .Pointers and arrays
