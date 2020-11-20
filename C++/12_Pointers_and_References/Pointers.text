@@ -107,11 +107,46 @@ string *name_ptr{&name};
 cout << *name_ptr << endl;    // Frank
 name = "James";               // underling variable is set to new value
 cout << *name_ptr << endl;    // James
+---------------------------------------------------------------------------------------
+Dynamic memory allocation: - Allocating storage from the heap
+
+.We often don't know how much storage we need until we need it
+.We can allocate storage for a variable at run time
+.Recall C++ arrays
+    -We had to explicitly provide the size and it was fixed
+    -But vectors grow and shrink dynamically
+.We can use pointers to access newly allocated heap storage
+
+int *int_ptr{nullptr};
+int_ptr = new int;        // allocate an integer on the heap
+cout << int_ptr << endl;  // 0x2747f28 - address of newly initialized variable
+cout << *int_ptr << endl; // 5849945845 - garbage
+*int_ptr = 100;
+cout << *int_ptr << endl; // 100
+
+int *int_ptr{nullptr};    
+int_ptr = new int;        // allocate an integer on the heap
+......
+delete int_ptr;           // frees the allocated storage
+-----------------------------------
+Arrays:
+
+int *array_ptr{nullptr};
+int size{};
+
+cout << "How big do you want the array? "; 
+cin >> size;
+
+array_ptr = new int[size];
+.......
+delete [] array_ptr;
 
 
 
 
-.Dynamic memory allocation
+
+
+
 .Pointer arithmetic
 .Pointers and arrays
 .Pass-by-reference with pointers
