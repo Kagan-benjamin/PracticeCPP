@@ -177,15 +177,51 @@ int *pointer_name {array_name};
 
 Subscript Notation: array_name[index], pointer_name[index]
 Offset Notation: *(array_name + index), *(pointer_name + index)
+---------------------------------------------------------------------------------------
+Pointer Arithmetic:
+
+.Pointers can be used in 
+    -Assignment expressions
+    -Arithmetic expressions
+    -Comparison expressions
+.C++ allows pointer arithmetic
+.Pointer arithmetic only makes sense with raw arrays
+
+. (++) increments a pointer to point to the next element in contiguous memory
+. (--) decrements a pointer to point to the previous array element
+
+int_ptr++;  |   int_ptr--;
+--------------------------------------
+. (+) increment pointer by n * sizeof(type)
+. (-) decrement pointer by n * sizeof(type)
+
+int_ptr += n;  |  int_ptr -= n;
+
+Subtracting two pointers:
+    -Determine the number of elements between the pointers
+    -Both pointers must point to the same data type
+
+int n = int_ptr2 - int_ptr1;
+--------------------------------------
+.Comparison operators can be used to determine if two pointers point to the 
+same location. !!! it DOES NOT compare the value of the data located at those points !!
+
+string s1 {"Frank"};
+string s2 {"Frank"};
+
+string *p1 {&s1};
+string *p2 {&s2};
+string *p3 {&s1};
+
+cout << (p1 == p2) << endl; // False
+cout << (p1 == p3) << endl; // True
+cout << (*p1 == *p2) << endl; // True
+cout << (*p1 == *p3) << endl; // True
 
 
 
 
 
-
-.Pass-by-reference with pointers
-
-.Pointer arithmetic
 .const and pointers
 .Using pointers to functions
 .Potential pointer pitfalls 
