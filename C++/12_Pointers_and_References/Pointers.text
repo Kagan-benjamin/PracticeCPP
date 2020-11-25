@@ -409,11 +409,99 @@ for (auto const &str : stooges){
 for (auto const &str : stooges){
     cout << str << endl;  // No error since this just displays
 }
+---------------------------------------------------------------------------------------
+L-Values, R-Values and L/R-Value References:
+
+.L-values:
+    -values that have names and are addressable
+    -modifiable if they are not constants
+
+int x{100};   // x is an l-value 
+x = 1000;
+x = 1000 + 20;  
+
+string name;  // name is an l-value
+name = "Ben";
+
+100 = x;       // 100 is NOT an l-value
+(1000+20) = x; // (1000+20) is NOT an l-value
+"Frank" = name;  // not valid
+----------------------------------
+.R-values: non-addressable and non-assignable
+    -Any value that is NOT an l-value
+        -On the right-hand side of an assignment expression 
+        -A literal
+        -A temporary which is intended to be non-modifiable 
+
+int x{100};       // 100 is an r-value
+int y = x + 200;  // (x + 200) is an r-value
+
+string name;     
+name = "Ben";     // "Ben" is an r-value 
+
+int max_num = max(20,30);   // max(20,30) is an r-value
+
+.R-values can be assigned to l-values explicitly
+
+int x{100};
+int y{0};
+
+y = 100;    // r-value 100 assigned to l-value y
+x = x + y;  // r-value (x+y) assigned to l-value x
+----------------------------------
+The references we've used are l-value references 
+
+int x{100};
+int &ref1 = x;   // ref1 is reference to l-value 
+ref1 = 1000; 
+int &ref2 = 100; // ERROR, cannot reference r-value 100
+
+int square(int &n){
+    return n*n;
+}
+int num{10};
+
+square(num); OK
+square(5);  ERROR - can't reference r-value 5 
+--------------------------------------------------------------------------------------
+
+.Pass-by-Value:
+    -When the function does NOT modify the actual parameter, and
+    -The parameter is small and efficent to copy like simple types (int, char, double)
+
+.Pass-by-Reference using a Pointer:
+    -When the function DOES modify the actual parameter, and
+    -The parameter is expensive to copy, and
+    -It's OK to assign the pointer a nullptr value.
+
+.Pass-by-Reference using a Pointer to Const:
+    -When the function does NOT modify the actual parameter, and
+    -The parameter is expensive to copy, and
+    -It's OK to assign the pointer a nullptr value, and
+    -You don't want to modify the pointer itself
+
+.Pass-by-Reference using a Reference:
+    -When the function DOES modify the actual parameter, and
+    -The parameter is expensive to copy, and
+    -The parameter will NEVER BE nullptr
+
+.Pass-by-Reference using a Const Reference:
+    -When the function does NOT modify the actual parameter, and
+    -The parameter is expensive to copy, and
+    -The parameter will NEVER BE nullptr 
 
 
 
+        |Modifies Actual Params | Expensive | Nullptr OK | Modify Pointer OK|
+        ---------------------------------------------------------------------
+PBV:    |          NO           |    NO     |     YES    |       YES        |
+PBR-P:  |          YES          |    YES    |     YES    |       YES        |
+PBR-PC: |          NO           |    YES    |     YES    |       NO         |
+PBR-R:  |          YES          |    YES    |     NO     |       NO         |
+PBR-RC: |          NO           |    YES    |     NO     |       NO         |
 
-.Review passing references to functions
+
+
 .const and references 
 .Reference variables in range-based for loops
 .Potential reference pitfalls
