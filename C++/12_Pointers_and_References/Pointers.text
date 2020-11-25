@@ -373,9 +373,46 @@ int *int_ptr;    // pointing anywhere
     -The memory is orphaned or leaked
     -One of the most common pointer problems
 ---------------------------------------------------------------------------------------
+What is a Reference?
+
+.An alias for a variable
+.Must be initialized to a variable when declared
+.Cannot be null
+.Once initialized, cannot be made to refer to a different variable
+.Very useful as function parameters
+.Might be helpful to think of a reference as a constant pointer that is 
+automatically dereferenced
+
+vector<string> stooges {"Larry","Moe","Curly"};
+
+for (auto str : stooges){
+    str = "Funny";        // changes the copy 
+}
+for (auto str : stooges){
+    cout << str << endl;  // Larry, Moe, Curly 
+}
+-------------------------------------------------
+vector<string> stooges {"Larry","Moe","Curly"};
+
+for (auto &str : stooges){
+    str = "Funny";        // changes the actual 
+}
+for (auto str : stooges){
+    cout << str << endl;  // Funny, Funny, Funny
+}
+-------------------------------------------------
+vector<string> stooges {"Larry","Moe","Curly"};
+
+for (auto const &str : stooges){
+    str = "Funny";        // Compiler error since const is used
+}
+for (auto const &str : stooges){
+    cout << str << endl;  // No error since this just displays
+}
 
 
-.What is a reference?
+
+
 .Review passing references to functions
 .const and references 
 .Reference variables in range-based for loops
