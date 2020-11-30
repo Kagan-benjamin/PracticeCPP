@@ -1,0 +1,36 @@
+------------Classes and Objects in C++--------------------------
+
+.What is Object-Oriented Programming?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.What are Classes and Objects?
+.Declaring Classes and Objects
+.Dot and pointer operators
+.PUBLIC and PRIVATE access modifiers
+.Methods, Constructors and Destructors
+    -CLASS methods
+    -default and overloaded constructors
+    -copy and move constructors
+    -shallow vs. deep copying
+    -THIS pointer
+.STATIC class members
+.STRUCT vs. CLASS
+.FRIEND of a class
+
