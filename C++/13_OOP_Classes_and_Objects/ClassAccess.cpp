@@ -78,3 +78,31 @@ int main() {
     delete enemy;
     return 0;
 }
+
+/*              Creating and Accessing Object Instances:
+
+#include "Dog.h"
+
+Dog test_dog() {
+
+        // With a pointer  
+
+    // Dog *spot = new Dog;
+    // (*spot).name = "Spot";
+    // spot -> age = 5;
+
+        // With a direct object 
+    Dog spot;
+    spot.name = "Spot";
+    spot.age = 5;
+
+//---- DO NOT CHANGE THE CODE BELOW----
+
+        // With a pointer          
+  // return *spot;
+
+        // With a direct object    
+    return spot;
+}
+
+*/

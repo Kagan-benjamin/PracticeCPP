@@ -157,7 +157,74 @@ Account *ben_account = new Account();
 
 ben_account -> balance;
 ben_account -> deposit(1000.00);
------------------------------------------------
+---------------------------------------------------------------------------------------
+Class Member Access Modifiers
+
+.PUBLIC 
+    -accessible everywhere
+.PRIVATE 
+    -accessible only by members or friends of the class 
+.PROTECTED
+    -used with inheritance 
+---------------------------------
+public
+
+class Class_Name {
+public:
+    // declaration(s);
+};
+---------------------------------
+private 
+
+class Class_Name {
+private:
+    // declaration(s);
+};
+---------------------------------
+Player Example:
+
+class Player{
+private:
+    std::string name;
+    int health;
+    int xp;
+public:
+    void talk(std::string text);
+    bool is_dead();
+};
+
+Player ben;
+ben.name = "Ben";                 // Compiler Error
+ben.health = 1000;                // Compiler Error
+ben.talk("Ready to battle");      // Ok
+
+Player *enemy = new Player();
+enemy -> xp = 100;                // Compiler Error
+enemy -> talk("I will hunt you"); // Ok
+
+delete enemy;
+---------------------------------
+Account example:
+
+class Account{
+private:
+    std::string name;
+    double balance;
+public:
+    bool withdraw(double amount);
+    bool deposit(double amount);
+};
+
+Account ben_account;
+ben_account.balance = 1000000.00;  // Compiler Error
+ben_account.deposit(10000);        // Ok
+ben_account.name = "Ben's Account"; // Compiler Error
+
+Account *layla_account = new Account();
+layla_account -> balance = 10000.0;   // Compiler Error
+layla_account -> withdraw(10000.0);   // Ok
+delete layla_account;
+-----------------------------------
 
 
 
@@ -167,8 +234,10 @@ ben_account -> deposit(1000.00);
 
 
 
-.Dot and pointer operators
-.PUBLIC and PRIVATE access modifiers
+
+
+
+
 .Methods, Constructors and Destructors
     -CLASS methods
     -default and overloaded constructors
