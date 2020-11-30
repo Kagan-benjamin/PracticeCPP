@@ -56,7 +56,27 @@ Design -
     .Usually more up-front design is necessary to create good models and hierarchies
     .Programs can be larger in size, slower, more complex 
 ---------------------------------------------------------------------------------------
+Classes and Objects
 
+Classes
+    -Blueprint from which objects are created
+    -A user-defined data-type
+    -Has attributes (data)
+    -Has methods (functions)
+    -Can hide data and methods
+    -Provides a publc interface
+
+example classes: Account, Employee, Image, std::vector, std::string
+---------------------------------------------
+Objects
+    -Created from a class
+    -Represents a specific instance of a class
+    -Can create many, many objects
+    -Each has its own identity 
+    -Each can use the defined class methods 
+
+example Account objects: Frank's account is an instance of Account
+.each Account has its own balance, can make deposits, withdrawals, etc. 
 
 
 
