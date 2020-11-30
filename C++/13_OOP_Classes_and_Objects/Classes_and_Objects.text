@@ -128,8 +128,36 @@ accounts1.push_back(jim_account);
 
 Account *mary_account = new Account();
 delete mary_account;
+---------------------------------------------------------------------------------------
+Accessing Class Members
 
+.We can access:
+    -class attributes
+    -class methods
+.Some class members will not be accessible (private)
+.We need an object to access instance variables
 
+Dot Operator:
+
+Account ben_account;
+
+ben_account.balance; // returns balance attribute for ben_account instance of class Account 
+ben_account.deposit(1000.00); // invokes class method deposit() with actual param 1000.00
+-----------------------------------------------
+If we have a pointer to an object (member of pointer operator)
+
+Account *ben_account = new Account();
+
+.Dereference the pointer, then use the dot operator:
+
+(*ben_account).balance;
+(*ben_account).deposit(1000.00);
+
+.Or, use the member of pointer operator (arrow operator):
+
+ben_account -> balance;
+ben_account -> deposit(1000.00);
+-----------------------------------------------
 
 
 
