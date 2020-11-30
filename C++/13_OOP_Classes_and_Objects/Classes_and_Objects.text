@@ -224,18 +224,91 @@ Account *layla_account = new Account();
 layla_account -> balance = 10000.0;   // Compiler Error
 layla_account -> withdraw(10000.0);   // Ok
 delete layla_account;
------------------------------------
+---------------------------------------------------------------------------------------
+***Implementing Member Methods***
 
+.Very similar to how we implement functions
+.Member methods have access to member attributes
+    -So you don't need to pass them in as arguments
 
+.Can be implemented inside the class declaration 
+    -Implicitly inline
 
+class Account{
+private:
+    double balance;
+public:
+    void set_balance(double bal){
+        balance = bal;
+    }
+    double get_balance(){
+        return balance;
+    }
+};
+---------------------------------
+.Can be implemented outside the class declaration
+    -Need to use Class_name::method_name
 
+class Account{
+private:
+    double balance;
+public:
+    void set_balance(double bal);
+    double get_balance();
+};
 
+void Account::set_balance(double bal){
+    balance = bal;
+}
+double Account::get_balance(){
+    return balance;
+}
+---------------------------------
+.Can separate specification from implementation
+    -.h file for the class declaration
+    -.cpp file for the class implementation
 
+file name: Account.h
 
+#ifndef _ACCOUNT_H_  // Include Guards 
+#define _ACCOUNT_H_  // pre-processor directives that guarantee file will be read only once
 
+class Account{
+private:
+    double balance;
+public:
+    void set_balance(double bal);
+    double get_balance();
+};
 
+#endif
 
+// Can also use #pragma once if supported
 
+file name: Account.cpp
+
+#include "Account.h"
+
+void Account::set_balance(double bal){
+    balance = bal;
+}
+double Account::get_balance(){
+    return balance;
+}
+
+file name: Main.cpp
+
+#include <iostream>
+#include "Account.h"
+using namespace std;
+int main(){
+    Account ben_account;
+    ben_account.set_balance(5500.0);
+    double bal = ben_account.get_balance();
+    cout << bal << endl;   
+
+    return 0;
+}
 
 
 .Methods, Constructors and Destructors
