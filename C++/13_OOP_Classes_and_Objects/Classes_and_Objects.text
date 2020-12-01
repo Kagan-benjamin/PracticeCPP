@@ -435,14 +435,91 @@ Account jim_account;                      // ERROR
 Account *mary_account = new Account;      // ERROR
 delete mary_account;
 Account bill_account {"Bill",15000.0};    // Ok
+---------------------------------------------------------------------------------------
+Overloaded Constructors:
+
+.Classes can have as many constructors as necessary
+.Each must have a unique signature
+.Default constructor is no longer compiler-generated once another constructor 
+is declared
+
+class Player{
+private:
+    std::string name;
+    int health;
+    int xp;
+public:
+    // Overloaded Constructors
+    Player(){
+        name = "None";
+        health = 0;
+        xp = 0;
+    }
+    Player(std::string name_val){
+        name = name_val;
+        health = 0;
+        xp = 0;
+    }
+    Player(std::string name_val, int health_val, int xp_val){
+        name = name_val;
+        health = health_val;
+        xp = xp_val;
+    }
+};
+
+Player empty;                                  //  None, 0, 0
+Player hero {"Hero"};                          // "Hero", 0, 0
+Player villain {"Villain"};                    // "Villain", 0, 0
+Player ben {"Ben",100,4};                      // "Ben", 100, 4
+Player *enemy = new Player("Enemy", 1000, 0);  // "Enemy", 1000, 0
+delete enemy;
+---------------------------------------------------------------------------------------
+Constructor Initialization Lists
+
+.So far, all data member values have been set in the constructor body
+.Constructor Initialization Lists
+    -Are more efficient
+    -Initialization list immediately follows the constructor parameter list
+    -Initializes the data members as the object is created!
+    -Order of initialization is the order of declaration within the class
+
+Previous way:
+
+Player::Player(){
+    name = "None";  // assignment, not initialization
+    health = 0;
+    xp = 0;
+}
+
+Player::Player(std::string name_val){
+    name = name_val;
+    health = 0;
+    xp = 0;
+}
+
+Player::Player(std::string name_val, int health_val, int xp_val){
+    name = name_val;
+    health = health_val;
+    xp = xp_val;
+}
+------------------------------------------
+Better way:
+
+Player::Player()
+    : name{"None"}, health{0}, xp{0} {    
+}
+
+Player::Player(std::string name_val)
+    : name{name_val}, health{0}, xp{0} {
+}
+
+Player::Player(std::string name_val, int health_val, int xp_val)
+    : name{name_val}, health{health_val}, xp{xp_val} {
+}
 
 
 
 
-
-
-    -CLASS methods
-    -default and overloaded constructors
     -copy and move constructors
     -shallow vs. deep copying
     -THIS pointer
