@@ -372,8 +372,70 @@ public:
 }
 Player *enemy = new Player("Enemy", 1000, 0);
 delete enemy;
-------------------------------------------
+---------------------------------------------------------------------------------------
 The Default Constructor
+
+.Does not expect any arguments
+    -Also known as no-args constructor
+.If you write no constructors at all for a class
+    -C++ will generate a Default Constructor that does nothing
+.The default constructor is called when you instantiate a new object with no arguments
+
+Player ben;
+Player *ben = new Player;
+-------------------------------------
+default example:
+
+class Account{
+private:
+    std::string name;
+    double balance;
+public:
+    bool withdraw(double amount);
+    bool deposit(double amount);
+};
+
+Account ben_account;
+Account layla_account;
+Account *frank_account = new Account;
+delete frank_account;
+-------------------------------------
+user-defined no-args constructor:
+
+class Account{
+private:
+    std::string name;
+    double balance;
+public:
+    Account(){                              //
+        name = "None";                      // User-defined no-args constructor
+        balance = 0.0;                      //      
+    }
+    bool withdraw(double amount);
+    bool deposit(double amount);
+};
+-------------------------------------
+no default constructor:
+
+class Account{
+private:
+    std::string name;
+    double balance;
+public:
+    Account(std::string name_val, double bal){    //
+        name = name_val;                          // User-defined, no defaults
+        balance = bal;                            //      
+    }
+    bool withdraw(double amount);
+    bool deposit(double amount);
+};
+
+Account frank_account;                    // ERROR
+Account jim_account;                      // ERROR 
+Account *mary_account = new Account;      // ERROR
+delete mary_account;
+Account bill_account {"Bill",15000.0};    // Ok
+
 
 
 
