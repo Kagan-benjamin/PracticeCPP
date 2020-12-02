@@ -568,11 +568,86 @@ Player::Player(std::string name_val, int health_val, int xp_val)
     : name{name_val}, health{health_val}, xp{xp_val} {
 }
 ---------------------------------------------------------------------------------------
+C++ Copy Constructor
+
+.When objects are copied, C++ must create a new object from an existing object
+.When is a copy of an object made?
+    -passing object by value as a parameter
+    -returning object from a function by value
+    -constructing one object based on another of the same class
+.C++ must have a way of accomplishing this, so it provides a compiler-defined
+default copy constructor if you do not
+--------------------------------------
+Pass object by value:
+
+Player hero {"Hero", 100, 20};
+
+void display_player(Player p){
+    // p is a COPY of hero here
+    // use p
+    // Destructor for p will be called 
+}
+
+display_player(hero);
+---------------------------------------
+Return object by value:
+
+Player enemy;
+
+Player create_super_enemy(){
+    Player an_enemy{"Super Enemy", 1000, 1000};
+    return an_enemy;    // a COPY of an_enemy is returned  
+}
+
+enemy = create_super_enemy();
+---------------------------------------
+Construct one object based on another:
+
+Player hero{"Hero", 100, 100};
+Player another_hero{hero};  // a COPY of hero is made
+---------------------------------------
+
+.If you don't provide your own way of copying objects by value, then the 
+compiler provides a default way of copying objects
+.Copies the values of each data member to the new object
+    -Default memberwise copy
+.Perfectly fine in many cases
+.Beware if you have a pointer data member
+    -Pointer will be copied
+    -Not what it is pointing to
+    -Shallow vs. Deep copies
+
+Best Practices:
+    -Provide a copy constructor when your class has raw pointer members
+    -Provide the copy constructor with a const reference parameter
+    -Use STL classes as they already provide copy constructors
+    -Avoid using raw pointer data members if possible (or use smart pointers)
+-----------------------------------------
+Declaring the Copy Constructor:
+
+Type::Type(const Type &source);
+
+Type::Type(const Type &source){
+    // code or initialization list to copy to the object 
+}
+
+
+Player::Player(const Player &source);
+Account::Account(const Account &source);
+
+Player::Player(const Player &source)
+    : name{source.name},
+      health{source.health},
+      xp{source.xp} {
+}
+---------------------------------------------------------------------------------------
+Shallow vs. Deep copying:
 
 
 
-    -copy and move constructors
-    -shallow vs. deep copying
+
+
+
     -THIS pointer
 .STATIC class members
 .STRUCT vs. CLASS
