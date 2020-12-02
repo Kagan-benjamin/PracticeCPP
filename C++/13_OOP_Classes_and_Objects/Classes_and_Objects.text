@@ -641,7 +641,7 @@ Player::Player(const Player &source)
       xp{source.xp} {
 }
 ---------------------------------------------------------------------------------------
-Shallow vs. Deep copying:
+Shallow Copying:
 
 .Consider a class that contains a pointer as a data member
 .Constructor allocates storage dynamically and initializes the pointer 
@@ -682,14 +682,51 @@ int main(){
     Shallow obj1 {100};
     display_shallow(obj1);    // will ERROR, obj1's data has been released
 
+    return 0;
+}
+---------------------------------------------------------------------------------------
+Deep Copying:
+
+.Create a copy of the pointed-to data
+.Each copy will have a pointer to unique storage in the heap
+.Deep copy when you have a raw pointer as a class data member 
+
+class Deep{
+private:
+    int *data;
+public:
+    Deep(int d);
+    Deep(const Deep &source);
+    ~Deep();
+};
+
+Deep::Deep(int d){
+    data = new int;
+    *data = d;
+}
+
+Deep::~Deep(){
+    delete data;
+}
+
+Deep::Deep(const Deep *source)
+    :Deep{*source.data} {        // delegate to Deep(int) and pass in the int
+}                                // that source is pointing to (*source.data)
+
+void display_deep(Deep s){
+    cout << s.get_data_value() << endl;
+}
+
+int main(){
+    Deep obj1 {100};
+    display_deep(obj1);
+
+    obj1.set_data_value(1000);
+    Deep obj2 {obj1};
 
     return 0;
 }
-
-
-
-
-
+---------------------------------------------------------------------------------------
 
     -THIS pointer
 .STATIC class members
