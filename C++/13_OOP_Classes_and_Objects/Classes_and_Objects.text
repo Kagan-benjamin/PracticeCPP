@@ -643,6 +643,49 @@ Player::Player(const Player &source)
 ---------------------------------------------------------------------------------------
 Shallow vs. Deep copying:
 
+.Consider a class that contains a pointer as a data member
+.Constructor allocates storage dynamically and initializes the pointer 
+.Destructor releases the memory allocated by the constructor
+.What happens in the default copy constructor?
+
+Default copy constructor -
+    -memberwise copy
+    -each data member is copied from the source object
+    -the pointer is copied, NOT what it points to (shallow copy)
+    -Problem: When we release the storage in the destructor, the other object 
+    still refers to the released storage!
+
+class Shallow{
+private:
+    int *data;
+public:
+    Shallow(int d);
+    Shallow(const Shallow &source);
+    ~Shallow();
+};
+
+Shallow::Shallow(int d){
+    data = new int;        // allocate storage
+    *data = d;
+}
+
+Shallow::Shallow(const Shallow &source)
+    : data(source.data){      // shallow copy, only the pointer is copied 
+}                           // Problem: source and the newly created object
+                            // BOTH point to the SAME data area!
+
+Shallow::~Shallow(){ 
+    delete data;           // free storage 
+}
+
+int main(){
+    Shallow obj1 {100};
+    display_shallow(obj1);    // will ERROR, obj1's data has been released
+
+
+    return 0;
+}
+
 
 
 
