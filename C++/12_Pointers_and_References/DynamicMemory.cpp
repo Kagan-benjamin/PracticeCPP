@@ -5,6 +5,11 @@ int main() {
     int *int_ptr{nullptr};
     int_ptr = new int;
     
+    int x{5};
+
+    // int x{}
+    // x = 5
+
     cout << "Memory location of newly allocated int variable on heap: " << int_ptr << endl;
     cout << "Original value at this location: " << *int_ptr << endl;
     delete int_ptr;
