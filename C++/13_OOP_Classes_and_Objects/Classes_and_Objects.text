@@ -876,7 +876,25 @@ Using const with classes:
 .We can also create const objects
 .What happens if we call member functions on const objects?
 .const-correctness
+------------------------------------------
+// villain is a const object, so its attributes cannot change 
 
+const Player villain {"Villain", 100, 55}; 
+
+void display_player_name(const Player &p){
+    cout << p.get_name() << endl;
+}
+display_player_name(villain);      // Compiler ERROR, no access to class methods
+
+class Player{
+private:
+    ...
+public:
+    std::string get_name() const;
+    ...
+};
+
+class to get_name() will now work, but set_name() is still blocked 
 
 
 
