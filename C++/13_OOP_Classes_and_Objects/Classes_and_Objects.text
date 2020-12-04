@@ -894,12 +894,67 @@ public:
     ...
 };
 
-class to get_name() will now work, but set_name() is still blocked 
+calls to get_name() will now work, but set_name() is still blocked 
+---------------------------------------------------------------------------------------
+STATIC Class Members:
+
+.Class data members can be declared as static
+    -A single data member that belongs to the class, not the objects
+    -Useful to store class-wide information 
+.Class functions can be declared as static
+    -Independent of any objects
+    -Can be called using the class name 
+--------------
+Player.h file:
+
+class Player{
+private:
+    static int total_players;
+public:
+    static int get_total_players();
+    ...
+};
+--------------
+Player.cpp file:
+
+#include "Player.h"
+
+int Player::total_players = 0;
+
+int Player::get_total_players(){
+    return total_players;
+}
+
+Player::Player(string name_val, int health_val, int xp_val)
+    : name{name_val}, health{health_val}, xp{xp_val}{
+        ++total_players;
+}
+
+Player::~Player(){
+    --total_players;
+}
+---------------------
+main.cpp file:
+
+void display_active_players(){
+    cout << "Active Players: " << Player::get_total_players() << endl;
+}
+
+int main(){
+    display_active_players();
+    Player frank{"Frank"};
+    display_active_players();
+    Player ben{"Ben", 100, 50};
+    display_active_players();
+    
+    return 0;
+}
+---------------------------------------------------------------------------------------
+STRUCT vs. CLASS:
 
 
 
 
-.STATIC class members
-.STRUCT vs. CLASS
+
 .FRIEND of a class
 
