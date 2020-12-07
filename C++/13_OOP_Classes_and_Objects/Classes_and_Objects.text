@@ -952,6 +952,38 @@ int main(){
 ---------------------------------------------------------------------------------------
 STRUCT vs. CLASS:
 
+.In addition to defining a class, we can declare a struct
+.STRUCT comes from C
+.STRUCT is essentially the same as a CLASS except:
+    -members are public by default
+
+class Person{
+    std::string name;           // private by default 
+    std::string get_name();
+};
+
+Person p;                   // initialize new instance of Person, p
+p.name = "Frank";           // ERROR - private
+std::cout << p.get_name();  // ERROR - private 
+-----------------------------
+struct Person{
+    std::string name;           // public by default 
+    std::string get_name();     // why use this if name is public?
+};
+
+Person p;                   // initialize new instance of Person, p
+p.name = "Frank";           // OK - public
+std::cout << p.get_name();  // OK - public
+------------------------------
+
+.STRUCT
+    -Use STRUCT for passive objects with public access
+    -Don't declare methods in STRUCT
+.CLASS
+    -Use class for active objects with private access
+    -Implement getters/setters as needed
+    -Implement member methods as needed 
+---------------------------------------------------------------------------------------
 
 
 
