@@ -13,7 +13,7 @@ Movies::~Movies(){}
 
 void Movies::add_movie(string name_val,string rating_val,int watched_val){
     bool match{false};
-    for (const Movie &movie : movie_collection){
+    for (Movie &movie : movie_collection){
         if (movie.get_name() == name_val){
             match = true;
             break;
