@@ -2,9 +2,66 @@
 
 What is Operator Overloading?
 
+.Using traditional operators such as +,=,*,etc. with user-defined types
+.Allows user-defined types to behave similar to built-in types
+.Can make code more readable and writable
+.Not done automatically (except for the assignent operator), must be explicitly 
+defined
+----------------------------
+Suppose we have a Number class that models any number
 
+.Using functions:
+    Number result = multiply(add(a,b), divide(c,d));
+.Using member methods:
+    Number result = (a.add(b)).multiply(c.divide(d));
 
+.Using overloaded operators:
+    Number result = (a+b)*(c/d);    // syntactic sugar
 
+Which operators can be overloaded?
+    -The majority of C++ operators can be overloaded
+    -The operators cannot be overloaded:   :: | :? | .* | . | sizeof
+
+Some basic rules:
+    -Precedence and Associativity of the operators cannot be changed
+    -The 'arity' cannot be changed (ie cannot make the division operator unary)
+    -Can't overload operators for primitive type (int, double, etc.)
+    -Can't create new operators 
+    -[], (), ->, and = MUST be declared as member methods 
+    -Other operators can be declared as member methods or global functions 
+---------------------------------
+Examples:
+
+.int                    .std::string
+a = b + c;              s1 = s2 + s3;
+a < b;                  s1 < s2;
+std::cout << a;         std::cout << s1;
+
+.double                 .Mystring
+a = b + c;              s1 = s2 + s3;
+a < b;                  s1 < s2;
+std::cout << a;         s1 == s2;
+                        std::cout << s1;
+.long                   
+a = b + c;              .Player
+a < b;                  p1 < p2;
+std::cout << a;         p1 == p2;
+                        std::cout << p1;
+-----------------------------
+
+class Mystring{
+private:    
+    char *str;   // C-style string 
+public:
+    Mystring();
+    Mystring(const char *s);
+    Mystring(const Mystring &source);
+    ~Mystring();
+    
+    void display() const;
+    int get_length() const;
+    const char *get_str() const;
+};
 
 
 Overloading the assignment operator (=)
