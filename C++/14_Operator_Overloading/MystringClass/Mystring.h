@@ -1,5 +1,5 @@
-#ifndef MYSTRING_H
-#define MYSTRING_H
+#ifndef _Mystring_H_
+#define _Mystring_H_
 
 class Mystring{
 private:
@@ -13,9 +13,15 @@ public:
     
     Mystring &operator=(const Mystring &rhs);  // copy assignment
     Mystring &operator=(Mystring &&rhs);       // move assignment
+    
+    Mystring operator-() const;     // unary operator so no parameters (has this)
+    Mystring operator+(const Mystring &rhs) const;  // concatenate
+    bool operator==(const Mystring &rhs) const;     // check equality 
+    
+    
     void display() const;
     int get_length() const;          // getters
     const char *get_str() const;
 };
 
-#endif // MYSTRING_H
+#endif // _Mystring_H_

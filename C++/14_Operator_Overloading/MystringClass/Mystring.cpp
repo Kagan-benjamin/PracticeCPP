@@ -37,14 +37,15 @@ Mystring::Mystring(Mystring &&source)     // Move constructor
    
    
 Mystring::~Mystring(){
-    delete[] str;
+    delete[] str;                     // Destructor
 }           
   
-  
+// Operator Overloading: ///////////////
+
 Mystring &Mystring::operator=(const Mystring &rhs){
     std::cout << "Copy Assignment" << std::endl;
     if (this == &rhs){
-        return *this;
+        return *this;                   // Copy Assignment
     }
     delete[] this->str;
     str = new char[std::strlen(rhs.str)+1];
@@ -55,17 +56,43 @@ Mystring &Mystring::operator=(const Mystring &rhs){
 Mystring &Mystring::operator=(Mystring &&rhs){
     std::cout << "Move Assignment" << std::endl;
     if (this == &rhs){
-        return *this;
+        return *this;                     // Move Assignment 
     }
     delete[] str;
     str = rhs.str;
     rhs.str = nullptr;
     return *this;
 }
-  
-  
-  
-  
+ 
+// Make lowercase
+Mystring Mystring::operator-() const{
+    char *buff = new char[std::strlen(str) + 1];
+    std::strcpy(buff,str);
+    for (size_t i{0}; i < std::strlen(buff); i++){
+        buff[i] = std::tolower(buff[i]);
+    }
+    Mystring temp{buff};
+    delete[] buff;
+    return temp;
+}
+ 
+// Concatenate
+Mystring Mystring::operator+(const Mystring &rhs) const{
+    char *buff = new char[std::strlen(str) + std::strlen(rhs.str) + 1];
+    std::strcpy(buff,str);
+    std::strcat(buff,rhs.str);
+    Mystring temp{buff};
+    delete[] buff;
+    return temp;
+} 
+ 
+// Check Equality
+bool Mystring::operator==(const Mystring &rhs) const{
+    return (strcmp(str,rhs.str) == 0);
+}
+
+///////////////////
+
 void Mystring::display() const {
     std::cout << str << " : " << get_length() << std::endl;
 }

@@ -1,24 +1,33 @@
 #include <iostream>
-#include <vector>
 #include "Mystring.h"
 
 using namespace std;
 
 int main() {
-	Mystring empty;           // no-args constructor
-    Mystring larry{"Larry"};  // overloaded constructor
-    Mystring stooge{larry};   // copy constructor  
+	cout << boolalpha << endl;
+    Mystring larry{"Larry"};
+    Mystring moe{"Moe"};
     
-    empty = larry;              // copy assignemnt
-    empty = "This is a test";   // empty.operator=(larry)
-                            // empty.operator=("This is a test")
-                            
-    Mystring a{"Hello"};      // overloaded constructor
-    a = Mystring{"Hola"};   // oc then move assignment 
-    a = "Bonjour";          // oc then move assignment 
+    Mystring stooge = larry;
+    larry.display();           // Larry
+    moe.display();             // Moe
     
-    stooge.display();
-    empty.display();
+    cout << (larry == moe) << endl;    // false
+    cout << (larry == stooge) << endl; // true
+    
+    Mystring larry2 = -larry;
+    larry2.display();     // larry
+    
+    Mystring stooges = larry + "Moe";
+    // Mystring stooges = "Larry" + moe; ERROR
+    
+    Mystring two_stooges = moe + " " + "Larry";
+    two_stooges.display();  // Moe Larry
+    
+    Mystring three_stooges = moe + " " + larry + " " + "Curly";
+    three_stooges.display();
+    
+    
     cout << endl;
     return 0;
 }
