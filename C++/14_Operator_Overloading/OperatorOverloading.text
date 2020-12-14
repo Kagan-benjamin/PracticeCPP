@@ -206,11 +206,81 @@ Mystring Mystring::operator+(const Mystring &rhs) const {
     return temp;       // return by value
 }
 ---------------------------------------------------------------------------------------
+Overloading Operators As Global Functions:
+
+.Unary operators as global functions (++, --, -, !):
+
+ReturnType operatorOp(Type &obj);
+
+Number operator-(const Number &obj);
+Number operator++(Number &obj);        // pre-increment
+Number operator++(Number &obj, int);   // post-increment
+bool operator!(const Number &obj);
+
+Number n1{100};
+Number n2 = -n1;    // operator-(n1)
+n2 = ++n1;          // operator++(n1)
+n2 = n1++;          // operator++(n1, int)
+------------------------------
+
+Mystring ben1 {"BEN"};
+Mystring ben2;
+ben1.display();  // BEN
+ben2 = -ben1;    // operator-(ben1)
+ben1.display();  // BEN
+ben2.display();  // ben
+
+.Often declared as FRIEND functions in the class declaration
+
+Mystring operator-(const Mystring &obj){
+    char *buff = new char[std::strlen(obj.str)+1];
+    std::strcpy(buff, obj.str);
+    for (size_t i{0}; i < std::strlen(buff); i++){
+        buff[i] = std::tolower(buff[i]);
+    }
+    Mystring temp{buff};
+    delete[] buff;
+    return temp;
+}
+--------------------------------
+Binary operators as global functions (+,-,==,!=,<,>,etc.):
+
+ReturnType operatorOp(const &Type lhs, const &Type rhs);
+
+Number operator+(const &Number lhs, const &Number rhs);
+Number operator-(const &Number lhs, const &Number rhs);
+bool operator==(const &Number lhs, const &Number rhs);
+bool operator<(const &Number lhs, const &Number rhs);
+
+Number n1{100}, n2{200};
+Number n3 = n1 + n2;       // operator+(n1,n2)
+n3 = n1 - n2;              // operator-(n1,n2)
+if (n1 == n2)...           // operator==(n1,n2)
+
+bool operator==(const Mystring &lhs, const Mystring &rhs){
+    if (std::strcmp(lhs.str, rhs.str) == 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+.If declared as a friend of Mystring, can access private str attribute
+.Otherwise, must use getter methods 
+
+Mystring operator+(const Mystring &lhs, const Mystring &rhs){
+    size_t buff_size = std::strlen(lhs.str) + std::strlen(rhs.str) + 1;
+    char *buff = new char[buff_size];
+    std::strcpy(buff, lhs.str);
+    std::strcat(buff, rhs.str);
+    Mystring temp{buff};
+    delete[] buff;
+    return temp;
+}
+---------------------------------------------------------------------------------------
 
 
 
 
 
-Overloading operators as global functions
 Overloading stream insertion (<<) and extraction (>>) operators
 
