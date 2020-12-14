@@ -277,10 +277,36 @@ Mystring operator+(const Mystring &lhs, const Mystring &rhs){
     return temp;
 }
 ---------------------------------------------------------------------------------------
+Overloading the Stream Insertion (<<) and Extraction (>>) Operators:
 
+Mystring larry{"Larry"};
+cout << larry << endl;   // Larry
+Player hero{"Hero",100,33};
+cout << hero << endl;    // {name: Hero, health: 100, xp: 33}
 
+Mystring larry; 
+cin >> larry;
 
+Player hero;
+cin >> hero; 
 
+.Doesn't make sense to implement as member methods
+    -Left operand must be a user-defined class
+    -Not the way we normally use these operators
 
-Overloading stream insertion (<<) and extraction (>>) operators
+std::ostream &operator<<(std::ostream &os, const Mystring &obj){
+    os << obj.str;  // if friend function
+    os << obj.get_str(); // if not friend function
+    return os;
+}
+.Return a reference to the ostream so we can keep inserting 
+.Don't return ostream by value!
+-------------------------------
+std::istream &operator>>(std::istream &is, const Mystring &obj){
+    char *buff = new char[500];
+    is >> buff;
+    obj = Mystring{buff};
+    delete[] buff;
+    return is;
+}
 
