@@ -86,11 +86,30 @@ Generalization /\        A         |                      Classes:
 --------------------------------------------------------------------------------------
 Inheritance vs Composition
 
+.Both allow reuse of existing classes
+.Public Inheritance
+    -"is-a" relationship
+        -Employee "is-a" Person
+        -Checking_Account "is-a" Account
+        -Circle "is-a" Shape
+.Composition
+    -"has-a" relationship
+        -Person "has-a" Account
+        -Player "has-a" Special Attack
+        -Circle "has-a" Location
+
+class Person {     // Composition example
+private:
+    std::string name;  // has-a name
+    Account account;   // has-a account
+};
+--------------------------------------------------------------------------------------
+Deriving Classes from Existing Classes
 
 
 
 
-.Deriving classes from existing classes
+
     -Types of inheritance
 .Protected members and class access
 .Constructors and Destructors
