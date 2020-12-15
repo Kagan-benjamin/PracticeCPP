@@ -1,16 +1,19 @@
 #include <iostream>
-#include "Savings_Account.h"
+#include "Account.h"
 
-Savings_Account::Savings_Account()
-    : int_rate{3.0}{
+Account::Account()
+    : balance{0.0}, name{"Account"}{
 }
 
-Savings_Account::~Savings_Account(){}
+Account::~Account(){}
 
-void Savings_Account::deposit(double amount){
-    std::cout << "Savings Account deposit called with " << amount << std::endl;
+void Account::deposit(double amount){
+    std::cout << "Account deposit called with " << amount << std::endl;
+}
+void Account::withdraw(double amount){
+    std::cout << "Account withdraw called with " << amount << std::endl;
 }
 
-void Savings_Account::withdraw(double amount){
-    std::cout << "Savings Account withdraw called with " << amount << std::endl;
+void Account::get_balance(){
+    std::cout << "Balance is: " << balance << std::endl; 
 }
