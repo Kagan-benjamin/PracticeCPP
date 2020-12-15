@@ -142,17 +142,40 @@ Savings_Account *p_sav_account = new Savings_Account();
 sav_account.deposit(1000.0);
 p_sav_account->withdraw(200.0);
 delete p_sav_account;
+--------------------------------------------------------------------------------------
+Protected Members and Class Access
+
+class Base {
+protected:
+    // protected Base class members...
+};
+
+.Accessible from the Base class itself
+.Accessible from classes derived from the Base class
+.Not accessible by objects of Base or Derived classes
+
+class Base {           Base Class     |     Access in Derived Class    [PUBLIC] 
+public:               ----------------------------------------------
+    int a;             public:    a   |       public:    a
+protected:             protected: b   |       protected: b
+    int b;             private:   c   |       c - NO ACCESS
+private:
+    int c;
+};
+                       Base Class     |     Access in Derived Class    [PROTECTED] 
+                      ----------------------------------------------
+                       public:    a   |       protected: a
+                       protected: b   |       protected: b
+                       private:   c   |       c - NO ACCESS
+
+                       Base Class     |     Access in Derived Class    [PRIVATE] 
+                      ----------------------------------------------
+                       public:    a   |       private: a
+                       protected: b   |       private: b
+                       private:   c   |       c - NO ACCESS
+--------------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-    -Types of inheritance
-.Protected members and class access
 .Constructors and Destructors
     -Passing arguments to base class constructors
     -Order of constructor and destructor calls
