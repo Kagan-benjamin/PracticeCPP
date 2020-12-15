@@ -1,0 +1,52 @@
+----------------------------Inheritance--------------------------------------------
+.What is inheritance and why is it useful?
+    -Provides a method for creating new classes from existing classes
+    -The new class contains the data and behaviors of the existing class
+    -Allow for reuse of existing classes
+    -Allows us to focus on the common attributes among a set of classes
+    -Allows new classes to modify behaviors of existing classes to make it unique
+    -Does not actually modify the original class
+
+Related classes:
+.Player, Enemy, Boss, Hero, Super_player, etc.
+.Account, Savings Account, Checking Account, Trust Account, etc.
+.Shape, Line, Oval, Circle, Square, etc.
+.Person, Employee, Student, Faculty, Staff, Administrator, etc.
+
+.Account: balance, deposit, withdraw
+    -Savings Account: balance, deposit, withdraw, interest rate...
+    -Checking Account: balance, deposit, withdraw, min balance, per check fee...
+    -Trust Account:   balance, deposit, withdraw, interest rate...
+
+Inheritance with accounts:
+
+class Account {
+    // balance, deposit, withdraw
+};
+
+class Savings_Account : public Account {
+    // interest rate, specialized withdraw...
+};
+
+class Checking_Account : public Account {
+    // min balance, per check fee, specialized withdraw...
+};
+
+class Trust_Account : public Account {
+    // interest rate, specialized withdraw...
+};
+--------------------------------------------------------------------------------------
+
+
+
+.Terminology and Notation
+.Inheritance vs Composition
+.Deriving classes from existing classes
+    -Types of inheritance
+.Protected members and class access
+.Constructors and Destructors
+    -Passing arguments to base class constructors
+    -Order of constructor and destructor calls
+.Redefining base class methods
+.Class Hierarchies
+.Multiple Inheritance
