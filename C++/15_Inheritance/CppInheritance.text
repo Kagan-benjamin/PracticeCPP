@@ -106,6 +106,47 @@ private:
 --------------------------------------------------------------------------------------
 Deriving Classes from Existing Classes
 
+class Base {
+    // Base class members...
+};
+
+class Derived : ACCESS-SPECIFIED Base {
+    // Derived class members...
+};
+
+.Access-specifier can be: public, private or protected. Defaults to private.
+.Public:
+    -most common
+    -establishes 'is-a' relationship between Derived and Base classes
+.Private:
+    -establishes 'derived class HAS-A base class' relationship
+    -'is implemented in terms of' relationship
+    -different from Composition
+---------------------------------------
+class Account {
+    // Account class members...
+};
+                                              // Savings_Account 'is-a' Account
+class Savings_Account : public Account {
+    // Savings_Account class members...
+};
+
+Account account{};
+Account *p_account = new Account();
+account.deposit(1000.0);
+p_account->withdraw(200.0);
+delete p_account;
+
+Savings_Account sav_account{};
+Savings_Account *p_sav_account = new Savings_Account();
+sav_account.deposit(1000.0);
+p_sav_account->withdraw(200.0);
+delete p_sav_account;
+
+
+
+
+
 
 
 
