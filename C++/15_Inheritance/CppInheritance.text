@@ -1,5 +1,5 @@
 ----------------------------Inheritance--------------------------------------------
-.What is inheritance and why is it useful?
+What is inheritance and why is it useful?
     -Provides a method for creating new classes from existing classes
     -The new class contains the data and behaviors of the existing class
     -Allow for reuse of existing classes
@@ -36,11 +36,60 @@ class Trust_Account : public Account {
     // interest rate, specialized withdraw...
 };
 --------------------------------------------------------------------------------------
+Terminology and Notation
+
+.Inheritance
+    -Process of creating new classes from existing classes
+    -Reuse mechanism
+.Single Inheritance
+    -A new class is created from another 'single' class
+.Multiple Inheritance
+    -A new class is created from two (or more) other classes 
+
+    Base <------------------------------------ Derived
+.Base class (parent, super)               .Derived class (child, sub)
+.The class being extended        .Inherits attributes and operations from base class
+
+."Is-A" relationship
+    -Public inheritance
+    -Derived classes are sub-types of their Base classes
+    -Can use a derived class object wherever we use a base class object
+.Generalization
+    -Combining similar classes into a single, more general class based on 
+    common attributes
+.Specialization
+    -Creating new classes from existing classes providing more specialized 
+    attributes or operations
+.Inheritance or Class Hierarchies
+    -Organization of our inheritance relationships
+
+Generalization /\        A         |                      Classes: 
+               |         ^         |                      .A                 
+               |    B----|----C    |                      .B is derived from A
+               |              ^    |                      .C is derived from A
+               |              |    |                      .D is derived from C
+               |              D    |                      .E is derived from D
+               |              ^    |
+               |              |    |  
+               |              E    \/ Specialization
+                            
+
+                            Person                   Classes:
+                              /\                     .Student is derived from Person
+                               |                     .Employee is derived from Person
+                   Employee----|----Student          .Faculty is derived from Employee 
+                      /\                             .Admin is derived from Employee
+                       |                             .Staff is derived from Employee
+            Faculty----|----Administrator
+                       |
+                     Staff
+--------------------------------------------------------------------------------------
+Inheritance vs Composition
 
 
 
-.Terminology and Notation
-.Inheritance vs Composition
+
+
 .Deriving classes from existing classes
     -Types of inheritance
 .Protected members and class access
