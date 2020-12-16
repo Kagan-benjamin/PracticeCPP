@@ -174,11 +174,77 @@ private:
                        protected: b   |       private: b
                        private:   c   |       c - NO ACCESS
 --------------------------------------------------------------------------------------
+Inheritance Constructors and Destructors
+
+.A Derived class inherits from its Base class
+.The Base part of the Derived class MUST be initialized BEFORE the Derived class
+is initialized
+.When a Derived object is created:
+    -Base class constructor executes, then
+    -Derived class constructor executes
+------------------------------
+Constructors:
+
+class Base {
+public:
+    Base(){ std::cout << "Base Constructor" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    Derived() { std::cout << "Derived Constructor" << std::endl; }
+};
+
+Base base;       // Base Constructor invoked
+Derived derived; // Base Constructor invoked, then Derived Constructor invoked
+--------------------------------
+Destructors:
+
+.Class destructors are invoked in the reverse order as constructors
+.The Derived part of the Derived class MUST be destroyed BEFORE the Base
+class destructor is invoked
+.When a Derived object is destroyed:
+    -Derived class destructor executes, then
+    -Base class destructor executes
+    -Each destructor should free resources allocated in it's own constructors 
+
+class Base {
+public:
+    Base(){ std::cout << "Base Constructor" << std::endl; }
+    ~Base(){ std::cout << "Base Destructor" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    Derived() { std::cout << "Derived Constructor" << std::endl; }
+    ~Derived(){ std::cout << "Derived Destructor" << std::endl; }
+};
+
+Base base;       // Base Constructor -> Base Destructor
+
+Derived derived; // Base Constructor -> Derived Constructor,
+                 // then Derived Destructor -> Base Destructor
+---------------------------------
+.A Derived class does NOT inherit:
+    -Base class constructors
+    -Base class destructor
+    -Base class overloaded assignment operators
+    -Base class friend functions
+.However, the base class constructors, destructors and overloaded assignment operators
+can invoke the base-class versions
+.C++11 allows explicit inheritance of base 'non-special' constructors with:
+    -using Base::Base;  // anywhere in the derived class declaration
+    -Lots of rules involved, often better to define constructors yourself
+--------------------------------------------------------------------------------------    
 
 
-.Constructors and Destructors
+
     -Passing arguments to base class constructors
     -Order of constructor and destructor calls
+
+
+
+
 .Redefining base class methods
 .Class Hierarchies
 .Multiple Inheritance
