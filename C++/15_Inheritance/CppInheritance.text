@@ -266,6 +266,9 @@ public:
         cout << "Derived overloaded (int) constructor" << endl;
     }
 };
+
+Constructor/Destructor calls --
+
                           Output:
 Base base;             .Base no-args constructor
 Base base{100};        .Base overladed (int) constructor
@@ -277,14 +280,78 @@ Derived::Derived(int x)
     : Base(x), {optional initializers for Derived}{
         // code 
 }
+--------------------------------------------------------------------------------------   
+Copy/Move Constructors and operator= with Derived Classes
+
+.Not inherited from the Base class
+.You may not need to provide your own
+    -Compiler-provided versions may work fine
+.We can explicitly invoke the Base class versions from the Derived class
+------------------------------
+Copy Constructor:
+    .Can invoke Base copy constructor explicitly
+    .Derived object 'other' will be sliced
+
+Derived::Derived(const Derived &other)
+    : Base(other), {Derived initialization list} {
+        // code
+}
+
+class Base {
+private:
+    int value;
+public:
+    Base() : value{0} {
+        cout << "Base no-args constructor" << endl;
+    }
+    Base(int x) : value{x} {
+        cout << "Base overloaded (int) constructor" << endl;
+    }
+
+    Base(const Base &other) : value{other.value} {
+        cout << "Base copy constructor" << endl;      // Copy Constructor
+    }
+    Base &operator=(const Base &rhs) {                // Assignment Operator
+        if (this != &rhs){
+            value = rhs.value;
+        }
+        return *this;
+    }
+
+};
     
+class Derived : public Base {
+private:
+    int doubled_value;
+public:
+    Derived() : Base{}, doubled_value{0} {
+        cout << "Derived no-args constructor" << endl;
+    }
+    Derived(int x) : Base{x}, doubled_value{x*2} {
+        cout << "Derived overloaded (int) constructor" << endl;
+    }
 
-    
-    
+    Derived(const Derived &other)
+        : Base(other), doubled_value{other.doubled_value} {     // Copy Constructor
+            cout << "Derived copy constructor" << endl;
+    }
+    Derived &operator=(const Derived &rhs) {
+        if (this != &rhs){                                      // Assignment Operator
+            Base::operator=(rhs);          
+            doubled_value = rhs.doubled_value;
+        }
+        return *this;
+    }
+};
+------------------------------
+.If you DO NOT define copy/move/overloaded assignment in Derived classes explicitly:
+    -The compiler will create them automatically and call the base class' version
+.If you DO provide Derived versions:
+    -Then YOU must invoke the Base versions explicitly
+.Be careful with raw pointers *********
+     -Especially if Base and Derived each have raw pointers
+    -Provide them with deep copy semantics
 
-
-
--Order of constructor and destructor calls
 
 
 
