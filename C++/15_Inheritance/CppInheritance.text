@@ -389,10 +389,34 @@ Base *ptr = new Derived();     // Base::deposit, compiler sees Base designation
 ptr->deposit(1000.0);          // for the pointer. not dynamic, may want access to
                                // Derived::deposit since the new object is a Derived
 ---------------------------------------------------------------------------------------
+Multiple Inheritance
 
+.A Derived class inherits from two or more Base classes at the same time
+.The Base classes may belong to unrelated class hierarchies
 
+.A Department_Chair:                           Person
+    -is-a Faculty AND                            /\
+    -is-a Administrator                          |
+                                    Employee --------- Student
+                                        /\
+                                        |
+                      Faculty ---- Administrator ---- Staff
+                         /\             /\
+                         |              |
+                         ----------------
+                                |
+                         Department_Chair 
+                        
+Employee + Student 'is-a' Person
+Faculty, Administrator + Staff 'is-a' Employee, which 'is-a' Person
+Department_Chair 'is-a' Faculty AND 'is-a' Administrator
 
+Department_Chair inherits: Person->Employee->Faculty&Administrator->Department_Chair
 
+class Department_Chair : public Faculty, public Administrator {
+    ...
+};
 
-.Class Hierarchies
-.Multiple Inheritance
+.Beyond the scope of this course
+.Some compelling use-cases, but easily misused and can be very complex
+---------------------------------------------------------------------------------------
