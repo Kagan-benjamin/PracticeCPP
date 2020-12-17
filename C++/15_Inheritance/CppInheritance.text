@@ -351,11 +351,48 @@ public:
 .Be careful with raw pointers *********
      -Especially if Base and Derived each have raw pointers
     -Provide them with deep copy semantics
+---------------------------------------------------------------------------------------
+Redefining Base Class Methods
+
+.Derived class can directly invoke Base class methods
+.Derived class can OVERRIDE or REDEFINE Base class methods
+.Very powerful in the context of polymorphism
+
+class Account {
+public:
+    void deposit(double amount) { balance += amount; }
+};
+
+class Savings_Account: public Account {
+public:
+    void deposit(double amount) {    // REDEFINITION of Base class method
+        amount += some_interest;
+        Account::deposit(amount);    // Invocation of Base class method 
+    }
+};
+-------------------------------
+Static Binding of Method Calls
+
+.Binding of which method to use is done at compile time:
+    -Default binding for C++ is static
+    -Derived class objects will use Derived::deposit
+    -But, we can explicitly invoke Base::deposit from Derived::deposit
+    -This is ok but limited, a much more powerful approach is DYNAMIC BINDING
+
+Base b;
+b.deposit(1000.0)    // invokes Base::deposit
+
+Derived d;
+d.deposit(1000.0)    // invokes Derived::deposit
+
+Base *ptr = new Derived();     // Base::deposit, compiler sees Base designation
+ptr->deposit(1000.0);          // for the pointer. not dynamic, may want access to
+                               // Derived::deposit since the new object is a Derived
+---------------------------------------------------------------------------------------
 
 
 
 
 
-.Redefining base class methods
 .Class Hierarchies
 .Multiple Inheritance
