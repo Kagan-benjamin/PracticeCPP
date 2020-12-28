@@ -218,9 +218,38 @@ public:
 ---------------------------------------------------------------------------------------
 FINAL Specifier:
 
+.C++11 provides the final specifier
+    -When used at the class level, prevents a class from being derived from 
+    -When used at the method level, prevents virtual method from being overriden
+in derived classes 
+
+class Test_Class final {
+    ...                    // Test_Class cannot be derived from
+};
+
+class Derived final : public Base {
+    ...                    // Derived cannot be derived from 
+};
+----------------------------------
+class A {
+public:
+    virtual void do_something();
+};
+
+class B : public A {
+public:
+    virtual void do_something() final;  // prevents further overriding of method
+};
+
+class C : public B {
+public:
+    virtual void do_something();   // final will cause compiler error: can't override
+};
+---------------------------------------------------------------------------------------
+Using Base Class References:
 
 
 
-.Using base class references
+
 .Pure virtual functions and abstract classes
 .Abstract classes as interfaces 
