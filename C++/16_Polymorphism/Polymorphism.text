@@ -85,17 +85,42 @@ Savings::withdraw()   Checking::withdraw()
   Trust::withdraw()
 
 ---------------------------------------------------------------------------------------
+Using Base Class Pointers:
+
+.For dynamic polymorphism, we must have:
+    -Inheritance
+    -Base class pointer or Base class reference
+    -Virtual functions
+
+Account *p1 = new Account();
+Account *p2 = new Savings();
+Account *p3 = new Checking();
+Account *p4 = new Trust();
+
+p1->withdraw(1000);    // Account::withdraw(1000);
+p2->withdraw(1000);    // Savings::withdraw(1000);
+p3->withdraw(1000);    // Checking::withdraw(1000);
+p4->withdraw(1000);    // Trust::withdraw(1000);
+
+Account *array[] = {p1,p2,p3,p4};
+
+for (auto i=0; i<4; i++){
+    array[i]->withdraw(1000);  // calls specific version of withdraw
+}
+
+vector<Account *> accounts {p1,p2,p3,p4};
+
+for (auto acc_ptr : accounts) {
+    acc_ptr->withdraw();       // calls specific version of withdraw
+}
+
+// delete the pointers 
+---------------------------------------------------------------------------------------
+Static vs. Dynamic Binding:
 
 
 
 
-
-
-
-
-
-.Using base class pointers
-.Static vs. dynamic binding
 .Virtual functions
 .Virtual destructors
 .The OVERRIDE and FINAL specifiers
