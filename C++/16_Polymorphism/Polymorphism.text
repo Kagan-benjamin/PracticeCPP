@@ -1,6 +1,99 @@
 --------------------------- Polymorphism -------------------------------------
+What is polymorphism?
 
-.What is polymorphism?
+.Fundamental to Object-Oriented Programming
+.Polymorphism
+    -Compile-time / early binding / static binding   BEFORE THE PROGRAM EXECUTES
+    -Run-time     / late binding  / dynamic binding  AS THE PROGRAM EXECUTES 
+.In C++, default is compile-time
+.Runtime Polymorphism
+    -Being able to assign different meanings to the same function at run-time
+.Allows us to program more abstractly
+    -General vs Specific
+    -Let C++ figure out which function to call at runtime
+.Not the default in C++, runtime polymorphism is achieved via:
+    -Inheritance
+    -Base class pointers or references
+    -Virtual functions 
+--------------------------------------
+                            Polymorphism
+                            /          \
+                    Compile-time       Run-time
+                        |                  |                  
+                    ---------              \/
+                    |        |          Function Overriding 
+                    |        \/
+    Function Overloading    Operator Overloading
+---------------------------------------
+Non-polymorphic example with Static Binding:
+
+Account a;
+a.withdraw(1000);            // Account::withdraw()
+
+Savings b;
+b.withdraw(1000);            // Savings::withdraw()
+
+Checking c;
+c.withdraw(1000);            // Checking::withdraw()
+
+Trust d;
+d.withdraw(1000);            // Trust::withdraw()
+
+Account *p = new Trust();     
+p->withdraw(1000);           // Account::withdraw(), but SHOULD BE Trust::withdraw()
+-----------------------------------------
+Static Binding:
+
+void display_account(const Account &account){
+    acc.display();   // will always use Account::display()
+}
+
+Account a;
+display_account(a);     // Account::display_account(a)
+Savings b;
+display_account(b);     // Account::display_account(b)
+Checking c;
+display_account(c);     // Account::display_account(c)
+Trust d;
+display_account(d);     // Account::display_account(d)
+-------------------------------------------
+Dynamic Binding:
+
+Account a;
+a.withdraw(1000);            // Account::withdraw()
+
+Savings b;
+b.withdraw(1000);            // Savings::withdraw()
+
+Checking c;
+c.withdraw(1000);            // Checking::withdraw()
+
+Trust d;
+d.withdraw(1000);            // Trust::withdraw()
+
+Account *p = new Trust();    // USING POLYMORPHISM:
+p->withdraw(1000);           // Trust::withdraw()
+
+    Account::withdraw()
+            /\
+            |
+ ------------------------
+ |                      |
+Savings::withdraw()   Checking::withdraw()
+      /\                                   // withdraw() method is virtual in Account
+      |
+  Trust::withdraw()
+
+---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 .Using base class pointers
 .Static vs. dynamic binding
 .Virtual functions
