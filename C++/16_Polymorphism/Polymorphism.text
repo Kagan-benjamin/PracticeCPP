@@ -166,6 +166,58 @@ public:
 ---------------------------------------------------------------------------------------
 OVERRIDE Specifier:
 
+.We can override Base class virtual functions
+.The function signature and return must be EXACTLY the same
+.If they are different, then we have redefinition and NOT overriding
+.Redefinition is statically bound
+.Overriding is dynamically bound
+.C++11 provides an OVERRIDE specifier to have the compiler ensure overriding 
+
+class Base {
+public:
+    virtual void say_hello() const {    // const
+        std::cout << "Hello - I'm a Base class object" << std::endl;
+    }
+    virtual ~Base() {}
+};
+
+class Derived : public Base {
+public:
+    virtual void say_hello() {     // No const, NOT overriding but redefinition
+        std::cout << "Hello - I'm a Derived class object" << std::endl;
+    }
+    virtual ~Derived() {}
+};
+
+Base *p1 = new Base();
+p1->say_hello();       // invokes Base::say_hello()
+
+Base *p2 = new Derived();
+p2->say_hello();       // due to redefinition, invokes Base::say_hello()
+
+.Not what we want since the say_hello() signatures are different between classes
+.So, Derived redefines say_hello() instead of overriding it
+-------------------------------
+Override:
+
+class Base {
+public:
+    virtual void say_hello() const {    
+        std::cout << "Hello - I'm a Base class object" << std::endl;
+    }
+    virtual ~Base() {}
+};
+
+class Derived : public Base {
+public:
+    virtual void say_hello() override {   // Produces compiler error since no const    
+        std::cout << "Hello - I'm a Derived class object" << std::endl;
+    }
+    virtual ~Derived() {}
+};
+---------------------------------------------------------------------------------------
+FINAL Specifier:
+
 
 
 
