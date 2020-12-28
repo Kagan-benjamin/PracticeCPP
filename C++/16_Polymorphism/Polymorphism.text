@@ -116,12 +116,41 @@ for (auto acc_ptr : accounts) {
 
 // delete the pointers 
 ---------------------------------------------------------------------------------------
-Static vs. Dynamic Binding:
+Virtual Functions:
+
+.Redefined functions are bound statically
+.Overriden functions are bound dynamically
+.We accomplish this by declaring the functions to be virtual; virtual objects
+are overriden
+.Allows us to treat all objects generally as objects of the Base class 
+
+.Declare the function you want to override as virtual in the Base class
+.Virtual functions are virtual all the way down the hierarchy from this point
+.Dynamic polymorphism only via Account class pointer or reference
+
+class Account {
+public:
+    virtual void withdraw(double amount);
+    ...
+};
+------------------------------------------
+.Override the function in the Derived classes
+.Function signature and return type must match EXACTLY
+.Virtual keyword not required but is best practice
+.If you don't provide an overriden version, it is inherited from its base class
+
+class Checking : public Account {
+public:
+    virtual void withdraw(double amount);
+    ...
+};
 
 
 
 
-.Virtual functions
+
+
+
 .Virtual destructors
 .The OVERRIDE and FINAL specifiers
 .Using base class references
