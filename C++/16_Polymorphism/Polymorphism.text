@@ -144,15 +144,31 @@ public:
     virtual void withdraw(double amount);
     ...
 };
+---------------------------------------------------------------------------------------
+Virtual Destructors:
+
+.Problems can happen when we destroy polymorphic objects
+.If a derived class is destroyed by deleting its storage via the base class pointer,
+and the class has a non-virtual destructor, then the behavior is undefined in the 
+C++ standard
+.Derived objects must be destroyed in the correct order starting at the correct
+destructor
+
+-If has class has virtual functions, ALWAYS provide a public virtual destructor
+-If the base class destructor is virtual, then all derived class destructors also are
+
+class Account {
+public:
+    virtual void withdraw(double amount);
+    virtual ~Account();
+    ...
+};
+---------------------------------------------------------------------------------------
+OVERRIDE Specifier:
 
 
 
-PERSONAL ACCESS TOKEN TEST
-PERSONAL ACCESS TOKEN TEST 2
 
-
-.Virtual destructors
-.The OVERRIDE and FINAL specifiers
 .Using base class references
 .Pure virtual functions and abstract classes
 .Abstract classes as interfaces 
