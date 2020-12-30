@@ -16,14 +16,52 @@ Issues with Raw Pointers:
 ----------------------------------------------------------------------------------------
 What are Smart Pointers?
 
+.Objects
+.Can only point to heap-allocated memory
+.Automatically call delete when no longer needed
+.Adhere to RAII principles
+.C++ Smart Pointers:
+    -Unique Pointers (unique_ptr)
+    -Shared Pointers (shared_ptr)
+    -Weak Pointers   (weak_ptr)
+    -Auto Pointers   // deprecated, (auto_ptr)
+
+#include <memory>
+
+.Smart pointers are defined by class templates:
+    -Wrapper around a raw pointer
+    -Overloaded operators 
+        -Dereference(*)
+        -Member selection(->)
+        -Pointer arithmetic not supported (++,--,etc)
+    -Can have custom deleters 
+-----------------------------
+{
+    std::type_ptr<Some_Class> ptr = ...
+    ptr->method();                // smart pointer ptr will automatically be 
+    cout << (*ptr) << endl;       // deleted when no longer needed 
+} 
+-----------------------------
+RAII - Resource Acquisition Is Initialization
+
+.Common idiom or pattern used in software design based on container object lifetime
+.RAII objects are allocated on the stack 
+.Resource Acquisition:
+    -Open a file, allocate memory, acquire a lock, etc.
+.Is Initialization:
+    -The resource is acquired within the constructor
+.Resource Relinquishing:
+    -Happens in the destructor
+        .Close the file, deallocate the memory, release the lock, etc.
+
+.Smart Pointers are an example of an RAII class 
+----------------------------------------------------------------------------------------
+Unique Pointer (unique_ptr)
 
 
 
 
 
-
-
-.Concept of ownership and RAII
 .C++ Smart Pointers
     -Unique pointers (unique_ptr)
     -Shared pointers (shared_ptr)
