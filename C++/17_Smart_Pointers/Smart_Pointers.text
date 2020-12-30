@@ -1,0 +1,10 @@
+----------------------------------Smart Pointers---------------------------------------
+
+.Issues with raw pointers
+.What are smart pointers?
+.Concept of ownership and RAII
+.C++ Smart Pointers
+    -Unique pointers (unique_ptr)
+    -Shared pointers (shared_ptr)
+    -Weak pointers (weak_ptr)
+.Custom deleters
