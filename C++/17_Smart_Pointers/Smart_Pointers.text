@@ -1,7 +1,28 @@
 ----------------------------------Smart Pointers---------------------------------------
+Issues with Raw Pointers:
 
-.Issues with raw pointers
-.What are smart pointers?
+.C++ provides absolute flexibility with memory management
+    -Allocation
+    -Deallocation
+    -Lifetime management
+.Some potentially serious problems include:
+    -Uninitialized (wild) pointers   // point to anywhere in memory, unintended
+    -Memory leaks                    // not deallocated
+    -Dangling pointers               // points to area that has been deallocated
+    -Not exception safe              // compiler can throw errors
+.Ownership?
+    -Who owns the pointer?
+    -When should a pointer be deleted?
+----------------------------------------------------------------------------------------
+What are Smart Pointers?
+
+
+
+
+
+
+
+
 .Concept of ownership and RAII
 .C++ Smart Pointers
     -Unique pointers (unique_ptr)
