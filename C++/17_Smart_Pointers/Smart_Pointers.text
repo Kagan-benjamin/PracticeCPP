@@ -190,5 +190,34 @@ shared_ptr<B> --------->    B
 ----------------------------------------------------------------------------------------
 Custom Deleters:
 
+.Sometimes when we destroy a smart pointer, we need more than to just destroy the 
+object on the heap (especially within data structures)
+.These are special-use cases
+.C++ smart pointers allow you to provide custom deleters
+.You cannot use make_unique or make_shared w/ custom deleters
+.There are several ways to achieve this:
+    -Functions
+    -Lambdas and other
 
+Functions:
 
+void my_deleter(Some_Class *raw_pointer) {
+    // custom deleter code
+    delete raw_pointer;
+}
+
+shared_ptr<Some_Class> ptr {new Some_Class{}, my_deleter};
+---------------------------------------
+void my_deleter(Test *ptr) {
+    cout << "In my custom deleter" << endl;
+    delete ptr;
+}
+
+shared_ptr<Test> ptr {new Test{}, my_deleter};
+----------------------------------------
+Lambdas: (anonymous function, inline)
+
+shared_ptr<Test> ptr(new Test{100}, [] (Test *ptr)) {
+    cout << "\tUsing my custom deleter" << endl;
+    delete ptr;
+};
