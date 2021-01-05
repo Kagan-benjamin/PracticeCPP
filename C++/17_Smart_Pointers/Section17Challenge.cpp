@@ -42,7 +42,9 @@ void display(const std::vector<std::shared_ptr<Test>> &vec) {
 
 int main() {
     std::unique_ptr<std::vector<std::shared_ptr<Test>>> vec_ptr;
-    vec_ptr = make();
+//    std::unique_ptr<std::vector<std::shared_ptr<Test>>> vec_ptr = std::make_unique<std::vector<std::shared_ptr<Test>>>(); // 1-line without 
+    vec_ptr = make();                                                                                                 // void make() function
+//    std::cout << vec_ptr.get(); returns address of raw pointer 
     std::cout << "How many data points do you want to enter: ";
     int num;
     std::cin >> num;
