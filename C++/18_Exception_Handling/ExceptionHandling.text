@@ -166,8 +166,65 @@ catch (const NegativeValueException &ex) {
     std::cerr << "Negative values aren't allowed" << std::endl;
 }
 ---------------------------------------------------------------------------------------
+Class-Level Exceptions:
 
+.Exceptions can also be thrown from within classes:
+.Class Methods
+    -These work the same way as they do for global functions 
+.Constructors 
+    -Constructors may fail
+    -Constructors do not return any value
+    -Throw an exception in the constructor if you cannot initialize an object
+.Destructor 
+    ***- DO NOT throw exceptions from the destructor 
 
+Account::Account(std::string name, double balance)
+    : name{name}, balance{balance} {
+        if (balance < 0.0) {
+            throw IllegalBalanceException{};
+        }
+}
 
-.Standard Library Exception Hierarchy
-    -std::exception and what()
+try {
+    std::unique_ptr<Account> moes_account =
+        std::make_unique<Checking_Account>("Moe",-10.0);
+}
+catch (const IllegalBalanceException &ex) {
+    std::cerr << "Couldn't create account" << std::endl;
+}
+---------------------------------------------------------------------------------------
+C++ Standard Library Exception Class Hierarchy:
+
+.C++ provides a class hierarchy of exception classes
+    -std::exception is the base class
+    -all subclasses implement the what() virtual function 
+    -we can create our own user-defined exception subclasses
+
+virtual const char *what() const noexcept;
+
+.See references for C++ STD Exception Class Hierarchy 
+
+class IllegalBalanceException : public std::exception {
+public:
+    IllegalBalanceException() noexcept = default;
+    ~IllegalBalanceException() = default;
+    virtual const char* what() const noexcept {
+        return "Illegal balance exception";
+    }
+};
+
+Account::Account(std::string name, double balance) 
+    : name{name}, balance{balance} {
+        if (balance < 0.0) {
+            throw IllegalBalanceException{};
+        }
+}
+
+try {
+    std::unique_ptr<Account> moes_account =
+        std::make_unique<Checking_Account>("Moe", -100.0);
+    std::cout << "Use moes_account" << std::endl;
+}
+catch (const IllegalBalanceException &ex) {
+    std::cerr << ex.what() << std::endl;    // displays "Illegal balance exception"
+}
