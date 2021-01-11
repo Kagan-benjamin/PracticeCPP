@@ -134,13 +134,58 @@ Reset to defaults
 .Floating Point manipulators
     -fixed, scientific, setprecision, showpoint, noshowpoint, showpos, noshowpos
 
+.Default when displaying floating point values is:
+    -setprecision  | Number of digits displayed (6)
+    -fixed         | Not fixed to a specific number of digits after the decimal point
+    -noshowpoint   | Trailing zeroes are not displayed
+    -nouppercase   | When displaying in scientific notation
+    -noshowpos     | No '+' is displayed for positive numbers 
+.These manipulators affect all further output to the stream
 
+double num{1234.5678};
+std::cout << num << std::endl;  // by default, 1234.57 | precision is 6 w/ rounding
 
+double num{123456789.987654321};
+std::cout << num << std::endl;  // by default, 1.23457e+008 | precision 6 w/ sci notation
+------------------------------
+double num{123456789.987654321};
+std::cout << std::setprecision(9);
+std::cout << num << std::endl;  // 123456790 | precision 9 w/ rounding 
+------------------------------
+double num{123456789.987654321};
+std::cout << std::fixed;
+std::cout << num << std::endl;  // 123456789.987654 | sets precision of 6 decimal digits
 
+std::cout << std::setprecision(3) << std::fixed; // 123456789.988 
+------------------------------
+double num{123456789.987654321};
+std::cout << std::setprecision(3) << std::scientific;
+std::cout << num << std::endl;  // 1.23e+008
 
-
+std::cout << std::uppercase << num << std::endl;  // 1.23E+008  
+------------------------------
+double num{123456789.987654321};
+std::cout << std::setprecision(3) << std::fixed << std::showpos;
+std::cout << num << std::endl;  // +123456789.988
+    to cancel, use std::noshowpos
+------------------------------
+double num{12.34};
+std::cout << num << std::endl;   // 12.34
+std::cout << std::showpoint;
+std::cout << num << std::endl;   // 12.3400  | trailing zeroes up to precision
+------------------------------
+.unsetf
+    std::cout.unsetf(std::ios::scientific | std::ios::fixed);
+OR
+    std::cout << std::resetiosflags(std::ios::floatfield);
+---------------------------------------------------------------------------------------
 .Field Width, Justification and Fill manipulators
     -setw, left, right, internal, setfill
+
+
+
+
+
 .Other manipulators
     -endl, flush, skipws, noskipws, ws
 
