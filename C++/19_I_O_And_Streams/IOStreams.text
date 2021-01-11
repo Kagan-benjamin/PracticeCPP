@@ -47,8 +47,55 @@ Instance of ostream (unbuffered)
 .Global objects, initialized before main executes
 .Best practice is to use cerr for error messages and clog for log messages 
 ---------------------------------------------------------------------------------------
+Stream Manipulators
+
+.Streams have useful member functions to control formatting
+.Can be used on input and output streams
+.The time of the effect on the stream varies
+.Can be used as member functions or as a manipulator
+    std::cout.width(10);         // member function
+    std::cout << std::setw(10);  // manipulator 
+----------------------------
+.Boolean manipulators
+    -boolalpha, noboolalpha
+
+.By default, boolean values are displayed as 1 or 0
+.Sometimes, the strings true or false are more appropriate 
+
+std::cout << (10 == 10) << std::endl;    // 1
+std::cout << (10 == 20) << std::endl;    // 0
+
+VS.
+
+std::cout << std::boolalpha;
+std::cout << (10 == 10) << std::endl;   // true
+std::cout << (10 == 20) << std::endl;   // false 
+
+.Once we set with boolalpha or noboolalpha, ALL further boolean output will be
+affected. We can toggle back and forth with:
+    std::cout << std::noboolalpha;
+    std::cout << std::boolalpha;
+
+Method version:
+    std::cout.setf(std::ios::boolalpha);
+    std::cout.setf(std::ios::noboolalpha);
+Reset to default:
+    std::cout << std::resetiosflags(std::ios::boolalpha);
+---------------------------------------------------------------------------------------
+.Integer manipulators
+    -dec, hex, oct, showbase, noshowbase, showpos, noshowpos, uppercase, nouppercase
 
 
-.Stream Manipulators
+
+
+
+.Floating Point manipulators
+    -fixed, scientific, setprecision, showpoint, noshowpoint, showpos, noshowpos
+.Field Width, Justification and Fill manipulators
+    -setw, left, right, internal, setfill
+.Other manipulators
+    -endl, flush, skipws, noskipws, ws
+
+
 .Reading and Writing to a Text File 
 .Using string streams 
