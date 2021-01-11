@@ -1,0 +1,54 @@
+---------------------------------- I / O Streams --------------------------------------
+Streams and I/O
+
+.C++ uses streams as an interface between the program and input/output devices
+.Independent of the actual device
+.Sequence of bytes
+.Input stream provides data to the program
+.Out stream receives data from the program 
+
+Input Device ---> Input Stream[9] --->
+                                       |
+                                       Program
+Output Device <--- Output Stream[9] <--|
+-----------------------------------
+Common Header Files
+
+<iostream> - Provides definitions for formatted input and output to/from streams
+<fstream>  - Provides definitions for formatted input and output to/from file streams
+<iomanip>  - Provides definitions for manipulators used to format stream I/O
+-----------------------------------
+Commonly Used Stream Classes
+
+Class:   
+----------------
+ ios           | Provides basic support for formatted and unformatted I/O ops. Base class
+ ifstream      | Provides high-level input operations on file based streams
+ ofstream      | Provides high-level output operations on file based streams 
+ fstream       | Provides for high-level I/O operatons on file based streams. 
+ stringstream  | Provides for high-level I/O operatons on memory based streams.
+------------------------------------
+Global Stream Objects
+
+std::cin   | Standard input stream - 
+By default 'connected' to the standard input device (keyboard). Instance of istream
+
+std::cout  | Standard output stream -
+By default 'connected' to the standard output device (console). Instance of ostream
+
+std::cerr  | Standard error stream -
+By default 'connected' to the standard error device (console). 
+Instance of ostream (unbuffered)
+
+std:clog   | Standard log stream -
+By default 'connected' to the standard log device (console).
+Instance of ostream (unbuffered)
+
+.Global objects, initialized before main executes
+.Best practice is to use cerr for error messages and clog for log messages 
+---------------------------------------------------------------------------------------
+
+
+.Stream Manipulators
+.Reading and Writing to a Text File 
+.Using string streams 
