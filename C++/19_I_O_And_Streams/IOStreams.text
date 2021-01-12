@@ -182,9 +182,56 @@ OR
 .Field Width, Justification and Fill manipulators
     -setw, left, right, internal, setfill
 
+.By default, when displaying floating point values:
+    -setw  | not set by default
+    -left  | when no field width
+    -right | when using field width
+    -fill  | not set by default, blank space is used 
+.Some of these manipulators affect only the next data element put on the stream**
 
+double num{1234.5678};
+std::string hello{"Hello"};
 
+std::cout << num << hello << std::endl; // 1234.57Hello
+-----------------------------
+std::cout << std::setw(10) << num << hello << std::endl;
 
+12345678901234567890   // behind the scenes, width units
+   1234.57Hello        // aligns end of num (7) with width unit 10
+-----------------------------
+std::cout << std::setw(10) << num 
+    << std::setw(10) << hello 
+    << std::setw(10) << hello << std::endl;
+
+12345678901234567890123456789012345678901234567890
+   1234.57     Hello     Hello     // aligns end of each num and hello with width 10
+------------------------------
+std::cout << std::setw(10) << std::left << num 
+    << hello << std::endl;          // Only affects num!
+
+12345678901234567890123456789012345678901234567890
+1234.57   Hello     // num is left aligned, width takes up 10. Hello begins in space 11
+------------------------------
+std::cout << std::setw(10) << num
+    << std::setw(10) << hello 
+    << std::setw(15) << hello << std::endl;
+
+12345678901234567890123456789012345678901234567890
+   1234.57     Hello          Hello  // R-aligned with w10, w10 and w15
+-------------------------------
+std::cout << std::setfill('-');
+std::cout << std::setw(10) << num << hello << std::endl;
+
+12345678901234567890123456789012345678901234567890
+---1234.57Hello
+-------------------------------
+std::cout << std::setfill('*') << std::setw(10) << num
+    << std::setfill('-') << std::setw(10) << hello
+    << std::setw(15) << hello << std::endl;
+
+12345678901234567890123456789012345678901234567890
+***1234.57-----Hello----------Hello
+---------------------------------------------------------------------------------------
 
 .Other manipulators
     -endl, flush, skipws, noskipws, ws
