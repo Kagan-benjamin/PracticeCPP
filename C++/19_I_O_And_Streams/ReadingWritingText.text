@@ -1,0 +1,117 @@
+-------------------------Reading and Writing Text Files---------------------------------
+Input files (fstream and ifstream)
+.fstream and ifstream are commonly used for input files
+
+1. #include <fstream>
+2. Declare an fstream or ifstream object
+3. Connect it to a file on your system (opens it for reading)
+4. Read data from the file via the stream
+5. Close the stream
+
+std::fstream in_file {"../myfile.txt",
+                        std::ios::in};
+
+.Open for reading in binary mode
+std::fstream in_file {"../myfile.txt",
+                        std::ios::in | std::ios::binary}; // used when accessing binary
+----------------------------------
+.ifstream is used for input files only
+
+std::ifstream in_file {"../myfile.txt",
+                        std::ios::in};   // this is default
+
+std::ifstream in_file {"../myfile.txt"}; // same behavior
+
+std::ifstream in_file {"../myfile.txt",
+                        std::ios::binary}; // used when accessing binary
+-----------------------------------
+std::ifstream in_file;
+std::string filename;
+std::cin >> filename;  // get the file name
+
+in_file.open(filename);
+        OR
+in_file.open(filename, std::ios::binary);
+
+if (in_file.is_open()){      // use is_open() method to return boolean
+    // read from it
+} else {
+    // file could not be opened
+    // does it exist? should the program terminate?
+}
+
+if (in_file){                // check directly if in_file is associated with an object
+    // read from it
+} else {
+    // terminate, error, etc.
+}
+------------------------------------
+Closing the File:
+.Always close any open files to flush out any unwritten data
+
+in_file.close();
+------------------------------------
+Reading from Files using >>
+
+.We can use the extraction operator for formatted read 
+.Same way we used it with cin
+
+int num{};
+double total{};
+std::string name{};
+
+int_file >> num;
+int_file >> total >> name;
+------------------------------------
+getline() method: 
+
+.We can use getline to read the file one line at a time
+
+std::string line{};    // This is a line
+std::getline(in_file, line);
+------------------------------------
+Example 1:
+
+std::ifstream in_file{"../myfile.txt"};           // open file
+std::string line{};                               // create empty string to write to
+
+if (!in_file){                                    // check if file is open
+    std::cerr << "File open error" << std::endl;  // if not, print error message
+    return 1;      // exit the program (main)     // terminate program 
+}
+while (!in_file.eof()){                           // while not at the end using .eof()
+    std::getline(in_file, line);                  // read and copy text to string line
+    std::cout << line << std::endl;               // print string line 
+}
+in_file.close();                                  // close the file 
+---------------------------------------
+Example 2:
+
+std::ifstream in_file{"../myfile.txt"};           // open file
+std::string line{};                               // create empty string to write to
+
+if (!in_file){                                    // check if file is open
+    std::cerr << "File open error" << std::endl;  // if not, print error message
+    return 1;      // exit the program (main)     // terminate program 
+}
+while (std::getline(in_file, line)){  // while in_file contains text, copy to string line
+    std::cout << line << std::endl;   // print string line 
+}
+in_file.close();                                  // close the file 
+---------------------------------------
+Example 3:  (unformatted style, 1 character at a time)
+
+std::ifstream in_file{"../myfile.txt"};           // open file
+char c;
+
+if (!in_file){                                    // check if file is open
+    std::cerr << "File open error" << std::endl;  // if not, print error message
+    return 1;      // exit the program (main)     // terminate program 
+}
+while (in_file.get(c)){
+    std::cout << c;
+}
+in_file.close();                                  // close the file 
+---------------------------------------------------------------------------------------
+
+
