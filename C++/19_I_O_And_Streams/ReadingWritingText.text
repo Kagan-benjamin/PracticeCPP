@@ -113,5 +113,93 @@ while (in_file.get(c)){
 }
 in_file.close();                                  // close the file 
 ---------------------------------------------------------------------------------------
+Output Files (fstream and ofstream)
 
+1. #include <fstream>
+2. Declare an fstream or ofstream object
+3. Connect it to a file on your file system (opens it for writing)
+4. Write data to the file via the stream
+5. Close the stream 
+
+.Output files will be created if they don't exist
+.Output files will be overwritten (truncated) by default
+.Can be opened so that new writes append
+.Can be opened in text or binary modes 
+---------------------------------------
+std::fstream out_file {"../myfile.txt",
+                        std::ios::out};
+std::fstream out_file {"../myfile.txt",
+                        std::ios::out | std::ios::binary};
+---------------------------------------
+std::ofstream out_file {"../myfile.txt",
+                        std::ios::out};
+std::ofstream out_file {"../myfile.txt"}; // text is default 
+std::ofstream out_file {"../myfile.txt",
+                        std::ios::binary};
+---------------------------------------
+std::ofstream out_file {"../myfile.txt",
+                        std::ios::trunc};  // truncate (discard contents) when opening
+std::ofstream out_file {"../myfile.txt",
+                        std::ios::app};    // append on each write
+std::ofstream out_file {"../myfile.txt",
+                        std::ios::ate};    // seek to end of stream when opening 
+---------------------------------------
+
+std::ofstream out_file;
+std::string filename;
+std::cin >> filename;
+
+out_file.open(filename);  OR  out_file.open(filename, std::ios::binary);
+
+if (out_file) {
+    // read from it
+}
+else {
+    // file could not be created or opened
+    // does it exist? should the program terminate?
+}
+
+out_file.close();
+-----------------------------------------
+Example 1:  .We can use the insertion operator for formatted write
+
+int num{100};
+double total{255.67};
+std::string name{"Ben"};
+
+out_file << num   << "\n"
+         << total << "\n"
+         << name  << std::endl;
+------------------------------------------
+Example 2: Copying a text file one line at a time
+
+std::ifstream in_file {"../myfile.txt"};  // open file to read
+std::ofstream out_file {"../copy.txt"};   // open file to write 
+
+if (!in_file){
+    std::cerr << "File open error" << std::endl;
+    return 1;
+}
+if (!out_file){
+    std::cerr << "File create error" << std::endl;
+    return 1;
+}
+-------------------------------------------
+std::string line{};
+
+while (std::getline(in_file,line)) {
+    out_file << line << std::endl;      // formatted copy by std::string
+}
+
+in_file.close();
+out_file.close();
+--------------------------------------------
+char c;
+
+while (in_file.get(c)){
+    out_file.put(c);                   // unformatted copy by individual characters 
+}
+
+in_file.close();
+out_file.close();
 
