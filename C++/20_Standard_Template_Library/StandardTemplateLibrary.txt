@@ -60,15 +60,60 @@ Random Acess Iterators   - directly access a container item
 .About 60 algorithms in the STL
 .Non-modifying vs Modifying algos.   
 ---------------------------------------------------------------------------------------
-
-
-
-
-
-.Generic Programming / Meta-programming
+Generic Programming / Meta-programming
     -pre-processor macros
-    -function templates
+
+.Generic Programming 
+    -Writing code that works with a variety of types as arguments, as long as
+those argument types meet specific syntactic and semantic requirements
+.Can be handled using Macros ***(Legacy style, not optimal for modern C++)***
+
+.C++ preprocessor directives
+.No type information
+.Simple substitution
+
+#define MAX_SIZE 100
+#define PI 3.14159
+
+if (num > MAX_SIZE){             
+    std::cout << "Too big";
+}
+double area = PI * r * r;
+
+This is inferior to using constants!
+-------------------------------------
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+int x = 100;
+int y = 200;
+std::cout << max(x,y); 
+-------------------------------------
+#define MAX(a,b) ((a>b) ? a : b)
+
+std::cout << MAX(10,20) << std::endl;
+std::cout << MAX(2.4,3.5) << std::endl;
+std::cout << MAX('A','C') << std::endl;
+-------------------------------------
+#define SQUARE(a) ((a)*(a))
+
+result = SQUARE(5);
+result = 5*5;          
+
+result = 100/SQUARE(5);
+result = 100/5*5;                    
+---------------------------------------------------------------------------------------
+-function templates
+    
+    
+    
+    
+
+
+
+    
     -class templates
+
 .STL Containers
 .STL Iterators
 .STL Algorithms 
