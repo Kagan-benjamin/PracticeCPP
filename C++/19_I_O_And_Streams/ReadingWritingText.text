@@ -251,7 +251,15 @@ if (ss >> value) {
 else {
     std::cout << "An integer was NOT entered" << std::endl;
 }
+---------------------------------------------------------------------------------------
+File Locations and IDEs
 
-
+           IDE            |              File Path
+-----------------------------------------------------------------
+CodeLite                  | std::ifstream in_file {"test.txt"};
+Windows Visual Studio Code| std::ifstream in_file {"test.txt"};
+Code::Blocks              | std::ifstream in_file {"test.txt"};
+CLion                     | std::ifstream in_file {"../test.txt"};
+Xcode                     | std::ifstream in_file {"test.txt"};   // see extra steps 
 
 
