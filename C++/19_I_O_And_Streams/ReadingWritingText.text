@@ -202,4 +202,56 @@ while (in_file.get(c)){
 
 in_file.close();
 out_file.close();
+----------------------------------------------------------------------------------------
+Using String Streams
+
+.Allows us to read or write from strings in memory much as we would read and write to
+files
+.Very powerful and useful for data validation
+
+classes: stringgstream, istringstream, ostringstream
+
+1. #include <sstream>
+2. Declare a stringgstream, istringstream or ostringstream object
+3. Connect it to a std::string
+4. Read/write data from/to the string stream using formatted I/O
+----------------------------------------------
+#include <sstream>    Read from string
+
+int num{};
+double total{};
+std::string name{};
+std::string info {"Moe 100 1234.5"};
+
+std::istringstream iss{info};
+iss >> name >> num >> total;
+----------------------------------------------
+#include <sstream>    Write to string
+
+int num{100};
+double total{1234.5};
+std::string name{"Ben"};
+
+std::ostringstream oss{};
+oss << name << " " << num << " " << total;
+std::cout << oss.str() << std::endl;
+----------------------------------------------
+Validating input with stringstream
+
+int value{};
+std::string input{};
+
+std::cout << "Enter an integer: ";
+std::cin >> input;
+
+std::stringgstream ss{input};
+if (ss >> value) {
+    std::cout << "An integer was entered" << std::endl;
+}
+else {
+    std::cout << "An integer was NOT entered" << std::endl;
+}
+
+
+
 
