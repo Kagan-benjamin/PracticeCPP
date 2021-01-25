@@ -189,12 +189,59 @@ std::pair
 std::pair<std::string, int> p1 {"Layla",100};
 std::cout << p1.first;  // Layla
 std::cout << p2.second; // 100
+----------------------------------------------------------------------------------------
+STL Containers
+
+.Data structures that can store objects of almost any type
+    -Template-based classes
+.Each container has member functions
+    -Some are specific to the container
+    -Others are available to all containers
+.Each container has an associated header file that must be included
+    -#include <container_type>
+
+Function:              |     Description:
+-----------------------------------------
+Default Constructor    |  Initializes an empty container     
+Overloaded Constructor |  Initializes containers with many options
+Copy Constructor       |  Initializes a container as a copy of another container
+Move Constructor       |  Moves existing container to new container 
+Destructor             |  Destroys a container 
+Copy Assignment        |  Copy one container to another 
+Move Assignment        |  Move one container to another 
+Size                   |  Returns the number of elements in the container 
+Empty                  |  Returns boolean - is the container empty?
+Insert                 |  Inserts an element into the container 
+Operator< / Operator<= |  Returns boolean - compare contents of 2 containers 
+Operator> / Operator>= |  Returns boolean - compare contents of 2 containers 
+Operator==  Operator!= |  Returns boolean - are the contents of 2 containers equal? 
+Swap                   |  Swap the elements of 2 containers 
+Erase                  |  Remove element(s) from a container 
+Clear                  |  Remove all elements from a container 
+Begin / End            |  Returns iterators to first element or end 
+Rbegin / Rend          |  Returns reverse iterators to first element or end 
+Cbegin / Cend          |  Returns constant iterators to first element or end 
+Crbegin / Crend        |  Returns constant reverse iterators to first element or end 
+
+.What types of elements can we store in containers?
+    -A copy of the element will be stored in the container. 
+    -All primitives are OK
+    -Element should be: Copyable and Assignnable (copy constructor / copy assignment)
+    -Element should be: Movable for efficiency (move constructor / move assignment)
+    -Ordered associative containers must be able to compare elements
+----------------------------------------------------------------------------------------
+STL Iterators
 
 
 
 
-.STL Containers
-.STL Iterators
+
+
+
+
+
+
+
 .STL Algorithms 
 .Array
 .Vector
