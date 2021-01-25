@@ -149,14 +149,49 @@ void func(T1 a, T1 b) {
 
 func<int,double>(10,20.2);
 func('A',12.4);
+---------------------------------------------------------------------------------------
+Generic Programming with Class Templates
+
+.What is a C++ Class Template?
+    -Similar to function template, but at the class level
+    -Allows plugging-in any data type
+    -Compiler generates the appropriate class from the blueprint 
+
+template <typename T>
+class Item {
+private:
+    std::string name;
+    T value;            // enables use with many datatypes
+public:
+    Item(std::string name, T value)
+        : name{name}, value{value} {}
+    std::string get_name() const {return name;}
+    T get_value() const {return value;}
+};
+
+Item<int> item1 {"Larry",1};
+Item<double> item2 {"House", 1000.0};
+Item<std::string> item3 {"Ben", "Boss"};
+std::vector<Item<int>> vec;
+----------------------------------------
+template <typename T1, typename T2>
+struct My_Pair {
+    T1 first;
+    T2 second;
+};
+
+My_Pair <std::string, int> p1 {"Ben",100};
+My_Pair <int,double> p2 {124, 13.6};
+std::vector<My_Pair<int,double>> vec;
+
+std::pair
+#include <utility>
+std::pair<std::string, int> p1 {"Layla",100};
+std::cout << p1.first;  // Layla
+std::cout << p2.second; // 100
 
 
-    
 
-
-
-    
-    -class templates
 
 .STL Containers
 .STL Iterators
