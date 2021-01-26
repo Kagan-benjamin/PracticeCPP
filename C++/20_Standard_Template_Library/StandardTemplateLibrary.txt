@@ -232,6 +232,91 @@ Crbegin / Crend        |  Returns constant reverse iterators to first element or
 ----------------------------------------------------------------------------------------
 STL Iterators
 
+.Allows abstracting an arbitrary container as a sequence of elements
+.They are objects that work like pointers by design
+.Most container classes can be traversed with iterators 
+
+.Iterators must be declared based on the container type they will iterate over:
+    container_type::iterator_type iterator_name;
+
+std::vector<int>::iterator it1;
+std::list<std::string>::iterator it2;
+std::map<std::string, std::string>::iterator it3;
+std::set<char>::iterator it4;
+
+std::vector<int> vec{1,2,3};
+vec.begin(); // 1, 0th element 
+vec.end();   // null, one after the last element
+
+std::set<char> suits {'C','H','S','D'};
+suits.begin() // C
+-------------------------------------
+std::vector<int> vec{1,2,3};
+
+std::vector<int>::iterator it = vec.begin();
+                OR
+auto it = vec.begin();
+--------------------------------------
+Operations with Iterators (it)
+
+Operation:         |   Description:   |   Type of Iterator:
+----------------------------------------------------
+++it               |  Pre-increment   |   All
+it++               |  Post-increment  |   All
+it = it1           |  Assignment      |   All
+*it                |  Dereference     |   Input/Output
+it->               |  Arrow operator  |   Input/Output 
+it == it1          |  Comparison (=)  |   Input 
+it != it1          |  Comparison (!=) |   Input 
+--it               |  Pre-decrement   |   Bidirectional 
+it--               |  Post-decrement  |   Bidirectional
+it + i, it += i    |  Increment       |   Random Access 
+it - i, it -= i    |  Decrement       |   Random Access 
+it < it1, it <= it1|  Comparison (<)  |   Random Access 
+it > it1, it >= it1|  Comparison (>)  |   Random Access 
+----------------------------------------
+Example:
+
+std::vector<int> vec{1,2,3};
+std::vector<int>::iterator it = vec.begin();
+
+while (it != vec.end()) {
+    std::cout << *it < " ";
+    ++it;
+}
+
+BETTER:
+
+std::vector<int> vec{1,2,3};
+for (auto it = vec.begin(); it != vec.end(); it++){
+    std::cout << *it << " ";
+}                                            // 1 2 3
+------------------------------------------
+Reverse Iterator Example:
+.works in reverse
+.last element is the first and first is the last
+.++ moves backward, -- moves forward
+
+std::vector<int> vec{1,2,3};
+std::vector<int>::reverse_iterator it = vec.begin();
+
+while (it != vec.end()) {
+    std::cout << *it << " ";
+    it++;
+}                                              // 3 2 1 
+---------------------------------------------
+Const Iterators:
+
+.begin() and end() 
+    -iterator
+.cbegin() and cend()
+    -const_iterator
+.rbegin() and rend()
+    -reverse_iterator
+.crbegin() and crend()
+    -const_reverse_iterator
+----------------------------------------------------------------------------------------
+STL Algorithms:
 
 
 
@@ -239,10 +324,6 @@ STL Iterators
 
 
 
-
-
-
-.STL Algorithms 
 .Array
 .Vector
 .Deque
