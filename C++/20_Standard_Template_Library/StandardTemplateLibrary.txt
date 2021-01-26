@@ -318,7 +318,91 @@ Const Iterators:
 ----------------------------------------------------------------------------------------
 STL Algorithms:
 
+.STL algorithms work on sequences of container elements provided to them
+by an iterator
+.STL has many common and useful algorithms
+.http://en.cppreference.com/w/cpp/algorithm
+.Many algorithms require extra information in order to do their work 
+    -Functors (function objects)
+    -Function pointers
+    -Lambda expressions (C++11)
 
+#include <algorithm>
+.Different containers support different types of iterators
+    -determines the types of algorithms supported
+.All STL algorithms expect iterators as arguments
+    -determines the sequence obtained from the container 
+
+Iterator Invalidation:
+.Iterators point to container elements
+.It's possible that iterators become invalid during processing
+.Suppose we are iterating over a vector of 10 elements 
+    -And we clear() the vector while iterating, what happens?
+    -Undefined behavior - our iterators are pointing to invalid locations
+----------------------------------
+Example, std::find
+
+.The std::find algorithm tries to locate the first occurence of an element in a 
+container
+.There are many variations
+.Find returns an iterator pointing to the located element or end()
+
+std::vector<int> vec{1,2,3};
+auto loc = std::find(vec.begin(), vec.end(), 3);
+if (loc != vec.end()) {
+    std::cout << *loc << std::endl;
+}
+
+.Find needs to be able to compare objects
+.operator== is used and must be provided by your class
+
+std::vector<Player> team { // Player intializations // };
+Player p {"Hero", 100, 12};
+
+auto loc = std::find(team.begin(), team.end(), p);
+if (loc != vec.end()) {
+    std::cout << *loc << std::endl;
+}
+-------------------------------------
+Example, std::for_each
+
+.std::for_each algorithm applies a function to each element in the iterator
+sequence
+.Functions must be provided to the algorithm as:
+    -Functor (function object)
+    -Function pointer
+    -Lambda expression
+.let's square each element:
+
+Using a Functor: 
+
+struct Square_Functor {
+    void operator()(int x){      // overload () operator 
+        std::cout << x*x << " ";
+    }
+};
+
+Square_Functor square;
+std::vector<int> vec{1,2,3,4};
+std::for_each(vec.begin(), vec.end(), square); // 1 4 9 16
+
+
+Using a Function Pointer:
+
+void square(int x) {            // function 
+    std::cout << x*x << " ";
+}
+std::vector<int> vec{1,2,3,4};
+std::for_each(vec.begin(), vec.end(), square); // 1 4 9 16
+
+
+Using a Lambda Expression:
+
+std::vector<int> vec {1,2,3,4};
+
+std::for_each(vec.begin(), vec.end(),
+    [](int x) { std::cout << x*x << " "; });  // Lambda expression, 1 4 9 16
+-----------------------------------------------------------------------------------------
 
 
 
