@@ -403,12 +403,47 @@ std::vector<int> vec {1,2,3,4};
 std::for_each(vec.begin(), vec.end(),
     [](int x) { std::cout << x*x << " "; });  // Lambda expression, 1 4 9 16
 -----------------------------------------------------------------------------------------
+Sequence Container - Arrays
+
+std::array (C++11)
+#include <array>
+
+.Fixed size, size must be known at compile time 
+.Direct element access
+.Provides access to the underlying raw array
+.Use instead of raw arrays when possible
+.All iterators available and do not invalidate 
+
+Initialization and Assignment:
+
+std::array<int,5> arr1 { {1,2,3,4,5} };  // C++11 vs C++14, double curlies not needed
+
+std::array<std::string,3> stooges {std::string{"Larry"},"Moe",std::string{"Curly"}};
+arr1 = {2,4,6,8,10};
+-------------------------------------
+Common std::array methods:
+
+std::array<int, 5> arr {1,2,3,4,5};
+
+std::cout << arr.size();  // 5
+std::cout << arr.at(0);   // 1     at includes bounds checking 
+std::cout << arr[1];      // 2     no bounds checking 
+std::cout << arr.front(); // 1
+std::cout << arr.back();  // 5
+std::cout << arr.empty(); // 0 (false)
+std::cout << arr.max_size(); // 5
+std::cout << arr.fill(10); // fills all to 10
+
+std::array<int, 5> arr1 {10,20,30,40,50};
+arr.swap(arr1);            // swaps the two arrays
+int *data = arr.data();    // obtain raw array address 
+
+*** en.cppreference.com ***
+----------------------------------------------------------------------------------------
 
 
 
 
-
-.Array
 .Vector
 .Deque
 .List and Forward List
