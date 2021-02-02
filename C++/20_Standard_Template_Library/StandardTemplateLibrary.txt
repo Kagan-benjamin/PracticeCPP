@@ -552,9 +552,4 @@ d.emplace_front("Ben",30);        // add to front, efficient!
 
 
 
-.List and Forward List
-.Set and Multi Set
-.Map and Multi Map
-.Stack and Queue
-.Priority Queue
-.Algorithms
+

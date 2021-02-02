@@ -1,0 +1,104 @@
+------------Standard Template Library Continued----------------------------------------
+std::list and std::forward_list
+
+.Sequence containers
+.Elements contained in non-contiguous memory
+.No direct access to elements
+.Very efficient for inserting and deleting elements once it is found 
+---------------------------------------------
+std::list
+#include <list>
+
+.Dynamic size
+    -lists of elements
+    -list is bidirectional (doubly-linked)
+.Direct element access is NOT provided
+.Rapid insertion and deletion of elements anywhere in the container (O(1))
+.All iterators available and invalidate when corresponding element is deleted
+
+std::list<int> l {1,2,3};
+
+    1 <-------> 2 <-------> 3
+ front()                 back()
+---------------------------------------------
+std::list<int> l1 {1,2,3,4,5};
+std::list<int> l2 (10,100);
+
+std::list<std::string> stooges {
+    std::string{"Larry"},
+    "Moe",
+    std::string{"Curly"}
+};
+l1 = {2,4,6,8,10};
+----------------------------------------------
+std::list<int> l {1,2,3,4,5};
+
+std::cout << l.size();    // 5
+std::cout << l.max_size;  // very large number
+std::cout << l.front();   // 1
+std::cout << l.back();    // 5 
+----------------------------------------------
+Person p1{"Larry",18};
+std::list<Person> l;
+
+l.push_back(p1);
+l.pop_back();
+l.push_front(Person{"Larry",18});
+l.pop_front();
+l.emplace_front("Ben",30);
+l.emplace_back("Layla",32);
+-----------------------------------------------
+std::list<int> l {1,2,3,4,5};
+
+auto it = std::find(l.begin(), l.end(), 3);
+l.insert(it, 10);  // 1 2 10 3 4 5
+l.erase(it);       // 1 2 10 4 5
+l.resize(2);       // 1 2
+l.resize(5);       // 1 2 0 0 0 
+-----------------------------------------------
+Traversing the List
+
+std::list<int> l {1,2,3,4,5};
+auto it = std::find(l.begin(), l.end(), 3);
+
+std::cout << *it;  // 3
+it++;
+std::cout << *it;  // 4
+it--;
+std::cout << *it;  // 3 
+-------------------------------------------------
+Forward List - std::forward_list
+
+#include <forward_list>   // less overhead than list, but singly-linked 
+.Dynamic size
+    -Lists of elements
+    -List uni-directional (singly-linked)
+    -Less overhead than a std::list
+.Direct element access is NOT provided 
+.Rapid insertion and deletion of elements anywhere in the container (O(1))
+.Reverse iterators are not available. Iterators invalidate when corresponding 
+element is deleted 
+
+std::forward_list<int> 1 {1,2,3,4,5};
+
+l.size() // NOT AVAILABLE for forward lists
+std::cout << l.max_size();  // very large number
+std::cout << l.front();     // 1
+std::cout << l.back();      // NOT AVAILABLE for forward lists
+-------------------------------------------
+Person p1{"Larry",18};
+std::forward_list<Person> l;
+
+l.push_front(p1);            // add p1 to front 
+l.pop_front();               // remove front element 
+l.emplace_front("Moe",24);   // initialize and add to front
+--------------------------------------------
+std::forward_list<int> l {1,2,3,4,5};
+auto it = std::find(l.begin(), l.end(), 3);
+
+l.insert_after(it,10);    // 1 2 3 10 4 5
+l.emplace_after(it,100); // 1 2 3 100 10 4 5
+l.erase_after(it);        // erases the 100, 1 2 3 10 4 5
+l.resize(2);              // 1 2
+l.resize(5);              // 1 2 0 0 0 
+----------------------------------------------------------------------------------------
