@@ -496,6 +496,53 @@ it = std::find(vec1.begin(), vec1.end(), 4);
 std::insert(it, vec2.begin(), vec2.end()); 
                         // 1,2,10,3,10,20,30,40,50,4,5
 ----------------------------------------------------------------------------------------
+Sequence Container - Deques
+
+std::deque (double ended queue)
+#include <deque>
+
+.Dynamic size
+    -Handled automatically
+    -Can expand and contract as needed
+    -Elements are NOT stored in contiguous memory
+.Direct element access (O(1))
+.Rapid insertion and deletion at the front AND back (O(1))
+.Insertion or removal of elements (O(n))
+.All iterators available and may invalidate
+
+std::deque<int> d{1,2,3,4,5};
+std::deque<int> d1(10,100);   // ten 100s, initializer list  
+
+std::deque<std::string> stooges {
+    std::string{"Larry"},
+    "Moe",
+    std::string{"Curly}
+};
+d = {2,4,6,8,10};
+------------------------------------------
+
+***4 - 0123 - 59**
+
+.deque elements are stored in separate areas of memory
+
+std::deque<int> d{1,2,3,4,5};
+std::cout << d.size();         // 5
+std::cout << d.max_size();     // very large number 
+std::cout << d.at(0);          // 1
+std::cout << d[1];             // 2
+std::cout << d.front();        // 1
+std::cout << d.back();         // 5
+-------------------------------------------
+Person p1{"Ben",30};
+std::deque<Person> d;
+
+d.push_back(p1);                  // add p1 to back of deque 
+d.pop_back();                     // remove last element from deque 
+d.push_front(Person{"Layla",32}); // add new Person to front of deque 
+d.pop_front();                    // remove first element from deque 
+d.emplace_back("Dan",26);         // add to back, efficient! 
+d.emplace_front("Ben",30);        // add to front, efficient! 
+---------------------------------------------------------------------------------------
 
 
 
@@ -504,7 +551,7 @@ std::insert(it, vec2.begin(), vec2.end());
 
 
 
-.Deque
+
 .List and Forward List
 .Set and Multi Set
 .Map and Multi Map
