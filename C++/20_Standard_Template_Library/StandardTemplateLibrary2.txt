@@ -311,6 +311,29 @@ q.pop();   // 30 20
 q.pop();   // 30
 std::cout << q.size();  // 1 
 -------------------------------------------------------------------------------------------
+std::priority_queue
 
+.Allows insertion and removal of elements in order from the front of the container
+.Elements are stored internally as a vector by default
+.Elements are inserted in PRIORITY order (largest value will always be at the front)
+.No iterators are supported 
 
+#include <queue>
+std::priority_queue
+.push()   - insert element into sorted order 
+.pop()    - removes the priority (greatest) element 
+.top()    - access the priority (greatest) element 
+.empty()  - returns boolean, is the queue empty?
+.size()   - number of elements in the queue 
+----------------------------------------------
+std::priority_queue<int> pq;  // defaults to underlying vector container
+
+pq.push(10);            // [10]
+pq.push(20);            // [20 10]
+pq.push(3);             // [20 10 3]
+pq.push(4);             // [20 10 4 3]
+
+std::cout << pq.top();  // 20
+pq.pop();               // removes 20 
+pq.top();               // 10 
 
