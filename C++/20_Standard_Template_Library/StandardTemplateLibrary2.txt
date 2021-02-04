@@ -184,4 +184,66 @@ std::unordered_multiset;
 
 .Elements are unordered, allows duplicate elements and iterators are available.
 ---------------------------------------------------------------------------------------
+Associative Containers - std::map
 
+std::map, std::unordered_map, std::multimap, std::unordered_multimap 
+
+#include <map>
+.Similar to a dictionary
+.Elements are stored as Key, Value pairs (std::pair)
+.Ordered by Key
+.No duplicate elements (keys are unique)
+.Direct element access using the key
+.All iterators available and invalidate when corresponding element is deleted 
+
+std::map<std::string, int> m1 {
+    {"Larry",18},
+    {"Moe",25}
+};
+
+std::map<std::string, std::string> m2 {
+    {"Bob","Butcher"},
+    {"Anne","Baker"},
+    {"George","Candlestick maker"}
+};
+
+std::cout << m2.size();     // 3 
+std::cout << m2.max_size(); // very large number    
+
+std::pair<std::string, std::string> p1 {"James","Mechanic"};
+m2.insert(p1);
+m2.insert(std::make_pair("Roger","Ranger"));
+
+m2["Frank"] = "Teacher";     // performs insert 
+m2["Frank"] = "Instructor";   // updates value at key Frank
+m2.at("Frank") = "Professor"; // exception handling if key does not exist 
+
+m2.erase("Anne");                 // erases Anne key
+if (m2.find("Bob") != m.end()){
+    std::cout << "Found Bob!";
+}
+
+auto it = m2.find("George");
+if (it != m2.end()){
+    m2.erase(it);                 // erases George key 
+}
+
+int num = m2.count("Bob");   // 0 or 1 
+m2.clear();                  // remove all elements 
+m2.empty();                  // true or false 
+-------------------------------------------------------
+#include <map> 
+std::multi_map
+
+.Ordered by key and allows all iterators, but also allows DUPLICATE ELEMENTS 
+-------------------------------------------------------
+#include <unordered_map>
+std::unordered_map
+
+.Elements are unordered, no duplicates allowed and no reverse iterators allowed 
+--------------------------------------------------------
+#include <unordered_map>
+std::unordered_multimap
+
+.Elements are unordered, no reverse iterators but allows DUPLICATE ELEMENTS 
+---------------------------------------------------------------------------------------
