@@ -279,6 +279,38 @@ std::cout << s.top();  // 30        20
 s.pop(); -------------------------> 10
 s.pop(); ------------------------------> 10
 std::cout << s.size();  // 1
-----------------------------------------------
+-----------------------------------------------------------------------------------------
+STL Adapter Container - Queue
+
+std::queue
+.First-in First-out (FIFO) data structure
+.Implemented as an adapter over other STL containers
+    -can be implemented as a list or deque
+.Elements are pushed at the back and popped from the front 
+.No iterators supported 
+
+#include <queue>
+.push()   - insert an element at the back of the queue  
+.pop()    - remove an element from the front of the queue 
+.front()  - access the front element
+.back()   - access the back element 
+.empty()  - returns boolean, is the queue empty?
+.size()   - returns number of elements in the queue 
+---------------------------------------------
+std::queue<int> q;
+std::queue<int, std::list<int>> q2;
+std::queue<int, std::deque<int>> q3;
+
+q.push(10);   //    10
+q.push(20);   //    20 10 
+q.push(30);   //    30 20 10 
+
+std::cout << q.front();  // 10
+std::cout << q.back();   // 30 
+q.pop();   // 30 20
+q.pop();   // 30
+std::cout << q.size();  // 1 
+-------------------------------------------------------------------------------------------
+
 
 
