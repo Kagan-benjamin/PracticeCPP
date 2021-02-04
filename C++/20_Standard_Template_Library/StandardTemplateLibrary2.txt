@@ -247,3 +247,38 @@ std::unordered_multimap
 
 .Elements are unordered, no reverse iterators but allows DUPLICATE ELEMENTS 
 ---------------------------------------------------------------------------------------
+STL Adapter Container - Stack
+
+std::stack
+.Last-in First-out (LIFO) data structure
+.Implemented as an adapter over other STL containers
+    -Can be implemented as a vector, list or deque 
+.All operations occur on one end of the stack (top)
+.No iterators are supported 
+
+#include <stack>
+
+.push()  - insert an element at the top of the stack
+.pop()   - removes element from the tpo of the stack
+.top()   - accesses the top element of the stack 
+.empty() - returns boolean, is the stack empty?
+.size()  - number of elements in the stack 
+
+std::stack<int> s;                    // uses deque by default 
+std::stack<int, std::vector<int>> s1; // uses underyling vector of integers
+std::stack<int, std::list<int>> s2;   // uses underlying list of integers 
+std::stack<int, std::deque<int>> s3;  // uses underlying deque of integers 
+--------------------------------------------
+std::stack<int> s;
+
+s.push(10);  10    20     30 
+s.push(20); -----> 10     20
+s.push(30); ------------> 10
+
+std::cout << s.top();  // 30        20   
+s.pop(); -------------------------> 10
+s.pop(); ------------------------------> 10
+std::cout << s.size();  // 1
+----------------------------------------------
+
+
