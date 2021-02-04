@@ -102,3 +102,86 @@ l.erase_after(it);        // erases the 100, 1 2 3 10 4 5
 l.resize(2);              // 1 2
 l.resize(5);              // 1 2 0 0 0 
 ----------------------------------------------------------------------------------------
+Associative Containers - std::set
+
+.Collection of stored objects that allow fast retrieval using a key
+.STL provides Sets and Maps
+.Usually implemented as a balanced binary tree or hashsets
+.Most operations are very efficient
+
+.Sets:
+    -std::set
+    -std::unordered_set
+    -std::multiset
+    -std::unordered_multiset 
+----------------------------------------------
+#include <set>
+
+.Similar to a mathematical set 
+.Ordered by key
+.No duplicate elements
+.All iterators available and invalidate when corresponding element is deleted 
+
+std::set<int> s {1,2,3,4,5};
+std::set<std::string> stooges{
+    std::string{"Larry"},
+    "Moe",
+    std::string{"Curly"}
+};
+s = {2,4,6,8,10};
+-----------------------------------------------
+std::set<int> s {4,1,1,3,3,2,5};  // 1 2 3 4 5, automatically sorted 
+std::cout << s.size();        // 5
+std::cout << s.max_size();    // very large number 
+
+.No concept of front and back, must use insert/emplace 
+s.insert(7);   // 1 2 3 4 5 7 
+-----------------------------------------------
+Person p1{"Larry",18};
+Person p2{"Moe",25};
+
+std::set<Person> stooges;
+stooges.insert(p1);               // adds p1 to set 
+auto result = stooges.insert(p2); // adds p2 to set 
+
+.uses operator< for ordering
+.returns a std::pair<iterator, bool> 
+    -iterator to the inserted element or to the duplicate in the set
+    -boolean indicating success or failure of insertion 
+-----------------------------------------------
+std::set<int> s {1,2,3,4,5};
+
+s.erase(3);   // erase the 3: 1 2 4 5 
+
+Better:
+
+auto it = s.find(4);
+if (it != s.end()){
+    s.erase(it);     // erase the 4: 1 2 5
+}
+------------------------------------------------
+std::set<int> s {1,2,3,4,5};
+
+int num = s.count(1);  // 0 or 1 if found 
+s.clear();             // remove all elements 
+s.empty();             // 0 or 1 if set is empty 
+------------------------------------------------
+Other Sets:
+
+#include <set>
+std::multi_set;
+
+.Sorted by key, allows duplicate elements and all iterators are available
+------------------------------------------------
+#include <unordered_set>
+std::unordered_set;
+
+.Elements are unordered, no duplicate elements and no reverse iterators allowed 
+.Elements cannot be modified - they must be erased and a new element inserted 
+------------------------------------------------
+#include <unordered_set>
+std::unordered_multiset;
+
+.Elements are unordered, allows duplicate elements and iterators are available.
+---------------------------------------------------------------------------------------
+
